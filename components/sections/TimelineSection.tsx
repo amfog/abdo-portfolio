@@ -15,15 +15,15 @@ export default function TimelineSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-16">
+      <div className="max-w-7xl mx-auto relative z-10 px-2">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16">
           {/* Left sticky label */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:sticky lg:top-28 lg:self-start"
+            className="lg:sticky lg:top-28 lg:self-start pl-4 lg:pl-6"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border-white/10 text-xs text-white/50 mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-[#7b5cf6]" />

@@ -16,8 +16,9 @@ export default function AboutSection() {
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+
+          {/* Left column: bio + target role */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -34,7 +35,7 @@ export default function AboutSection() {
               <span className="gradient-text-primary">teams scale faster.</span>
             </h2>
 
-            <div className="space-y-4 text-white/55 text-base leading-relaxed">
+            <div className="space-y-4 text-white/55 text-base leading-relaxed max-w-prose">
               <p>
                 I&apos;m Abdelrahman Mohamed Ahmed — a founder, operations architect, and product
                 systems leader based in Cairo, Egypt. My work sits at the intersection of operations,
@@ -80,25 +81,16 @@ export default function AboutSection() {
                 +201507144461
               </div>
             </div>
-          </motion.div>
 
-          {/* Right */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="space-y-6"
-          >
-            {/* Target role card */}
-            <div className="glass rounded-2xl p-6 border border-[#4f75ff]/15">
+            {/* What I'm looking for */}
+            <div className="mt-8 glass rounded-2xl p-6 border border-[#4f75ff]/15">
               <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
                 <span className="w-5 h-5 rounded-md bg-[#4f75ff]/20 flex items-center justify-center">
                   <svg className="w-3 h-3 text-[#4f75ff]" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                   </svg>
                 </span>
-                Target Role
+                What I&apos;m Looking For
               </h3>
               <div className="space-y-2">
                 {[
@@ -121,7 +113,16 @@ export default function AboutSection() {
                 ))}
               </div>
             </div>
+          </motion.div>
 
+          {/* Right column: skills + certifications */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="space-y-6"
+          >
             {/* Skills */}
             <div className="glass rounded-2xl p-6">
               <h3 className="text-white font-semibold mb-4">Core Skills</h3>
@@ -157,6 +158,7 @@ export default function AboutSection() {
               </div>
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>

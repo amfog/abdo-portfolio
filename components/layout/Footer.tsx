@@ -1,10 +1,6 @@
-import Link from 'next/link';
-
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="border-t border-white/8 bg-[#050510]">
+    <footer className="border-t border-white/8 bg-[#0d0d20]">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
@@ -69,7 +65,7 @@ export default function Footer() {
 
         <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-sm">
-            © {year} Abdelrahman Mohamed Ahmed · Cairo, Egypt
+            © 2025 Abdelrahman Mohamed Ahmed · Cairo, Egypt
           </p>
           <p className="text-white/20 text-xs">Systems builder who ships.</p>
         </div>

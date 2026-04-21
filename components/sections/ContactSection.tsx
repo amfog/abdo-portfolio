@@ -56,12 +56,9 @@ export default function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:Abdo.fog@gmail.com?subject=${encodeURIComponent(
-      form.subject || 'Portfolio Inquiry'
-    )}&body=${encodeURIComponent(
-      `Hi Abdelrahman,\n\nMy name is ${form.name}.\n\n${form.message}\n\nBest,\n${form.name}\n${form.email}`
-    )}`;
-    window.location.href = mailtoLink;
+    const subject = encodeURIComponent(form.subject || 'Portfolio Inquiry');
+    const body = encodeURIComponent(`${form.name}\n${form.message}`);
+    window.location.href = `mailto:Abdo.fog@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -95,8 +92,8 @@ export default function ContactSection() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-8">
-          {/* Contact cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          {/* Left column: contact cards + availability */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -115,7 +112,7 @@ export default function ContactSection() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
                 whileHover={{ x: 4 }}
-                className="flex items-center gap-4 glass rounded-2xl p-5 hover:border-white/15 transition-all duration-300 group"
+                className="flex items-center gap-4 glass rounded-2xl p-5 w-full hover:border-white/15 transition-all duration-300 group"
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300"
@@ -142,7 +139,7 @@ export default function ContactSection() {
             ))}
 
             {/* Availability note */}
-            <div className="glass rounded-2xl p-5 border border-emerald-500/15">
+            <div className="glass rounded-2xl p-5 border border-emerald-500/15 w-full">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-emerald-400 text-sm font-medium">Available for opportunities</span>
@@ -154,7 +151,7 @@ export default function ContactSection() {
             </div>
           </motion.div>
 
-          {/* Contact form */}
+          {/* Right column: contact form */}
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 20 }}
@@ -174,7 +171,7 @@ export default function ContactSection() {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Your name"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 focus:bg-white/8 transition-all duration-200"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 transition-all duration-200"
                 />
               </div>
               <div>
@@ -187,7 +184,7 @@ export default function ContactSection() {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="your@email.com"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 focus:bg-white/8 transition-all duration-200"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 transition-all duration-200"
                 />
               </div>
             </div>
@@ -201,7 +198,7 @@ export default function ContactSection() {
                 value={form.subject}
                 onChange={(e) => setForm({ ...form, subject: e.target.value })}
                 placeholder="What's this about?"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 focus:bg-white/8 transition-all duration-200"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 transition-all duration-200"
               />
             </div>
 
@@ -215,7 +212,7 @@ export default function ContactSection() {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 placeholder="Tell me about your project, opportunity, or just say hello..."
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 focus:bg-white/8 transition-all duration-200 resize-none"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 transition-all duration-200 resize-none"
               />
             </div>
 
@@ -231,7 +228,7 @@ export default function ContactSection() {
             </button>
 
             <p className="text-white/25 text-xs text-center">
-              Opens your email client with pre-filled content.
+              Opens your email client with pre-filled content to Abdo.fog@gmail.com
             </p>
           </motion.form>
         </div>

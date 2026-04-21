@@ -157,10 +157,10 @@ export const caseStudies: CaseStudy[] = [
     lessons:
       "The best operations system is the one people actually use. Adoption comes from co-design, not mandates. Involve the end-users in building their own workflow.",
     metrics: [
-      { label: "Onboarding Time Reduction", value: "50%" },
-      { label: "Cross-team Projects Shipped", value: "12+" },
-      { label: "Reporting Cycle Reduction", value: "60%" },
-      { label: "Teams Aligned", value: "4" },
+      { label: "Players managed", value: "170+" },
+      { label: "Programs delivered", value: "5" },
+      { label: "Teams coordinated", value: "53" },
+      { label: "Partnerships secured", value: "3" },
     ],
     tags: ["Program Management", "Systems Design", "Leadership"],
   },
@@ -194,7 +194,7 @@ export const timeline: TimelineEntry[] = [
     year: "2024",
     title: "Summer Camp + Riot Games Partnership",
     description:
-      "Organized a Summer Gaming Camp in collaboration with Riot Games. Delivered structured experiences for youth players across Cairo, combining competitive play with education.",
+      "Co-created Summer Camp 2024 — 1,800 participants across 53 teams and 5 simultaneous tournament formats. Secured partnership with Riot MENA, The Purge, and Wild Circuit.",
     accent: "#4f75ff",
   },
   {

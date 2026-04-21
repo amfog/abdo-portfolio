@@ -39,10 +39,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${geist.variable} scroll-smooth`}>
-      <body className="antialiased bg-[#050510] text-white">
-        <Navbar />
-        {children}
-        <Footer />
+      <body className="antialiased bg-[#0d0d20] text-white">
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+
+          <main className="flex-1 w-full">
+            {children}
+          </main>
+
+          <Footer />
+        </div>
       </body>
     </html>
   );
