@@ -6,7 +6,7 @@ import { caseStudies } from '@/data';
 
 export default function CaseStudiesSection() {
   return (
-    <section id="case-studies" className="py-24 px-6 relative">
+    <section id="case-studies" className="relative py-16 md:py-20 px-4 sm:px-6">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

@@ -6,7 +6,7 @@ import { skills } from '@/data';
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 px-6 relative">
+    <section id="about" className="relative py-16 md:py-20 px-4 sm:px-6">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

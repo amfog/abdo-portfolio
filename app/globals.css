@@ -20,6 +20,8 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+  overflow-x: hidden;
 }
 
 body {
@@ -59,6 +61,7 @@ body {
 }
 
 .glass-card {
+  position: relative;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(8px);

@@ -6,7 +6,7 @@ import { stats } from '@/data';
 
 export default function ImpactSection() {
   return (
-    <section id="impact" className="py-24 px-6 relative">
+    <section id="impact" className="relative py-16 md:py-20 px-4 sm:px-6">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

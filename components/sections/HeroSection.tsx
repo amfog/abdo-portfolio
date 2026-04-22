@@ -43,7 +43,7 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 py-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 md:py-20">
 
         <motion.div
           variants={stagger.container}
@@ -116,10 +116,10 @@ export default function HeroSection() {
 
           <motion.div
             variants={stagger.item}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto md:mx-0 pt-10 border-t border-white/10"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-8 w-full border-t border-white/10"
           >
             {stats.map((s) => (
-              <div key={s.label} className="glass rounded-2xl p-4 text-center">
+              <div key={s.label} className="relative glass rounded-2xl p-4 text-center">
                 <div className="text-2xl font-bold text-white mb-1">{s.value}</div>
                 <div className="text-white/40 text-xs">{s.label}</div>
               </div>
