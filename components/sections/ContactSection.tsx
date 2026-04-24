@@ -56,13 +56,13 @@ export default function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(form.subject || 'Portfolio Inquiry');
-    const body = encodeURIComponent(`${form.name}\n${form.message}`);
+    const subject = encodeURIComponent(form.subject || 'Portfolio Contact');
+    const body = encodeURIComponent('Name: ' + form.name + '\n\nMessage:\n' + form.message);
     window.location.href = `mailto:Abdo.fog@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
-    <section id="contact" className="relative py-16 md:py-20 px-4 sm:px-6">
+    <section id="contact" className="relative py-16 md:py-20">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -71,7 +71,7 @@ export default function ContactSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

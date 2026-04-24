@@ -44,7 +44,7 @@ export default function TimelineItem({ entry, index, isLast = false }: TimelineI
       </div>
 
       {/* Content */}
-      <div className="flex-1 glass rounded-2xl p-6 hover:border-white/15 transition-all duration-300 group">
+      <div className="flex-1 glass rounded-2xl p-8 hover:border-white/15 transition-all duration-300 group">
         <div className="flex items-center gap-3 mb-2">
           <span
             className="text-xs font-semibold px-2 py-0.5 rounded-full"

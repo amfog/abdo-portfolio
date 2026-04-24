@@ -6,7 +6,7 @@ import { stats } from '@/data';
 
 export default function ImpactSection() {
   return (
-    <section id="impact" className="relative py-16 md:py-20 px-4 sm:px-6">
+    <section id="impact" className="relative py-16 md:py-20">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -15,7 +15,7 @@ export default function ImpactSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

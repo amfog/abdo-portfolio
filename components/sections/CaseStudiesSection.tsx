@@ -6,7 +6,7 @@ import { caseStudies } from '@/data';
 
 export default function CaseStudiesSection() {
   return (
-    <section id="case-studies" className="relative py-16 md:py-20 px-4 sm:px-6">
+    <section id="case-studies" className="relative py-16 md:py-20">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -15,7 +15,7 @@ export default function CaseStudiesSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +48,7 @@ export default function CaseStudiesSection() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {caseStudies.map((cs, i) => (
             <CaseStudyCard key={cs.id} caseStudy={cs} index={i} />
           ))}

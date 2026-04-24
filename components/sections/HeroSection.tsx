@@ -43,16 +43,16 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 md:py-20">
+      <div className="container relative z-10 py-16 md:py-20">
 
         <motion.div
           variants={stagger.container}
           initial="hidden"
           animate="show"
-          className="max-w-4xl text-center md:text-left"
+          className="w-full text-center"
         >
 
-          <motion.div variants={stagger.item} className="flex justify-center md:justify-start mb-8">
+          <motion.div variants={stagger.item} className="flex justify-center mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-[#4f75ff]/30 text-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-white/70">Open to new opportunities</span>
@@ -70,7 +70,7 @@ export default function HeroSection() {
 
           <motion.p
             variants={stagger.item}
-            className="text-lg md:text-xl text-white/55 max-w-2xl mx-auto md:mx-0 mb-4 leading-relaxed"
+            className="text-lg md:text-xl text-white/55 max-w-2xl mx-auto mb-4 leading-relaxed"
           >
             I&apos;m{' '}
             <span className="text-white font-medium">Abdelrahman Mohamed Ahmed</span> — founder,
@@ -90,24 +90,24 @@ export default function HeroSection() {
 
           <motion.div
             variants={stagger.item}
-            className="flex flex-wrap justify-center md:justify-start gap-3 mb-10"
+            className="flex flex-wrap justify-center gap-4 mb-10"
           >
             <a
-              href="#systems"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-[#4f75ff] text-white hover:bg-[#4f75ff]/90 transition-all duration-200"
+              href="#products"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold bg-[#4f75ff] text-white hover:bg-[#4f75ff]/90 transition-all duration-200 min-w-[160px] justify-center"
             >
               See my work
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold glass border border-white/15 text-white/80 hover:text-white hover:border-white/25 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold glass border border-white/15 text-white/80 hover:text-white hover:border-white/25 transition-all duration-200 min-w-[160px] justify-center"
             >
               Get in touch
             </a>
             <a
               href="/resume.pdf"
               download
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold glass border border-white/15 text-white/80 hover:text-white hover:border-white/25 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold glass border border-white/15 text-white/80 hover:text-white hover:border-white/25 transition-all duration-200 min-w-[160px] justify-center"
             >
               <Download className="w-4 h-4" />
               Download CV

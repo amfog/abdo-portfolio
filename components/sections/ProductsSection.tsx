@@ -6,8 +6,8 @@ import { products } from '@/data';
 
 export default function ProductsSection() {
   return (
-    <section className="relative py-16 md:py-20 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="products" className="relative py-16 md:py-20">
+      <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

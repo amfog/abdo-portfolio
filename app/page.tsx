@@ -8,7 +8,7 @@ import ContactSection from '@/components/sections/ContactSection';
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0d0d20]">
+    <div className="min-h-screen bg-[#0d0d20]">
       <HeroSection />
       <AboutSection />
       <ImpactSection />
@@ -16,6 +16,6 @@ export default function HomePage() {
       <CaseStudiesSection />
       <TimelineSection />
       <ContactSection />
-    </main>
+    </div>
   );
 }

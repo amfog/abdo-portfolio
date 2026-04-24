@@ -6,7 +6,7 @@ import { timeline } from '@/data';
 
 export default function TimelineSection() {
   return (
-    <section id="timeline" className="relative py-16 md:py-20 px-4 sm:px-6">
+    <section id="timeline" className="relative py-16 md:py-20">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -15,7 +15,7 @@ export default function TimelineSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10 px-2">
+      <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16">
           {/* Left sticky label */}
           <motion.div

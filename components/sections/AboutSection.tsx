@@ -6,7 +6,7 @@ import { skills } from '@/data';
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-16 md:py-20 px-4 sm:px-6">
+    <section id="about" className="relative py-16 md:py-20">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -15,7 +15,7 @@ export default function AboutSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="container relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
           {/* Left column: bio + target role */}

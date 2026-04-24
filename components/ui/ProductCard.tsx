@@ -21,7 +21,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -4 }}
-      className="glass rounded-2xl p-6 hover:border-white/15 transition-all duration-300 group relative overflow-hidden flex flex-col h-full"
+      className="glass rounded-2xl p-8 hover:border-white/15 transition-all duration-300 group relative overflow-hidden flex flex-col h-full"
     >
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"

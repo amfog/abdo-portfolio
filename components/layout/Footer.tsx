@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="border-t border-white/8 bg-[#0d0d20]">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="container py-12">
         <div className="grid md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
           <div>
@@ -23,7 +23,7 @@ export default function Footer() {
             <p className="text-white/30 text-xs font-semibold uppercase tracking-widest mb-4">Navigation</p>
             <div className="grid grid-cols-2 gap-2">
               {[
-                { label: 'Work', href: '#systems' },
+                { label: 'Work', href: '#products' },
                 { label: 'About', href: '#about' },
                 { label: 'Impact', href: '#impact' },
                 { label: 'Case Studies', href: '#case-studies' },

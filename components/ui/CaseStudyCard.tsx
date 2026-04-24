@@ -31,7 +31,7 @@ export default function CaseStudyCard({ caseStudy, index = 0 }: CaseStudyCardPro
         style={{ background: `radial-gradient(circle at 50% 0%, ${accent}06, transparent 70%)` }}
       />
 
-      <div className="p-6 flex flex-col flex-1">
+      <div className="p-8 flex flex-col flex-1">
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5 mb-4">
           {caseStudy.tags.map((tag) => (
