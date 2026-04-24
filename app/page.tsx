@@ -1,6 +1,6 @@
-import HeroSection from '@/components/sections/HeroSection';
-import AboutSection from '@/components/sections/AboutSection';
-import ImpactSection from '@/components/sections/ImpactSection';
+import { HeroSection } from '@/components/sections/HeroSection';
+import { AboutSection } from '@/components/sections/AboutSection';
+import { ImpactSection } from '@/components/sections/ImpactSection';
 import ProductsSection from '@/components/sections/ProductsSection';
 import CaseStudiesSection from '@/components/sections/CaseStudiesSection';
 import TimelineSection from '@/components/sections/TimelineSection';

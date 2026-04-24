@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import StatCard from '@/components/ui/StatCard';
 import { stats } from '@/data';
 
-export default function ImpactSection() {
+export function ImpactSection() {
   return (
-    <section id="impact" className="relative py-16 md:py-20">
+    <section id="impact" className="section-padding relative">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -15,7 +15,7 @@ export default function ImpactSection() {
         }}
       />
 
-      <div className="container relative z-10">
+      <div className="container-wide relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -23,19 +23,18 @@ export default function ImpactSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border-white/10 text-xs text-white/50 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4f75ff]" />
+          <span className="section-label" style={{ display: 'inline-block' }}>
             Impact Dashboard
-          </div>
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Numbers that matter.
           </h2>
-          <p className="text-white/50 max-w-xl mx-auto">
+          <p className="max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.50)' }}>
             Real outcomes from real systems — measured, tracked, and scaled.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {stats.map((stat, i) => (
             <StatCard key={stat.label} stat={stat} index={i} />
           ))}
