@@ -1,14 +1,16 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function Navbar() {
   return (
     <header className="w-full fixed top-0 left-0 z-50">
       <div className="container">
         <div className="flex items-center justify-between h-16">
           
-          <div className="text-white font-semibold">
+          <Link href="/" className="text-white font-semibold hover:text-[#4f75ff] transition-colors">
             Abdelrahman
-          </div>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-6 text-sm text-white/60">
             <a href="#work">Work</a>

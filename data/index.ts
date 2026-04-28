@@ -1,27 +1,68 @@
-import type { Product, CaseStudy, TimelineEntry, Stat, Edition } from "@/types";
+import type { Product, CaseStudy, TimelineEntry, Stat, Edition, Certification } from "@/types";
 
 export const products: Product[] = [
   {
-    id: "nexaro-ai",
-    slug: "nexaro-ai",
-    title: "Nexaro AI",
-    subtitle: "Founder-led Workflow Intelligence",
+    id: "nexaro",
+    slug: "nexaro",
+    title: "Nexaro",
+    subtitle: "Founder & CEO — AI Workflow Ecosystem",
     description:
-      "Startup vision focused on building scalable internal operating systems and AI-assisted workflow automation — eliminating operational chaos for teams that need to move fast.",
-    badge: "Startup Vision",
-    kpi: "40%",
-    kpiLabel: "Operational Time Reduction",
+      "My flagship venture. Building a suite of 7 integrated operational products powered by AI. Includes Vicious OS, Nexaro Life, CRM, HR, Rent OS, Teams OS, and the Core Platform. Focus: Eliminating operational chaos for modern teams.",
+    badge: " Startup Vision",
+    kpi: "7",
+    kpiLabel: "Products in Ecosystem",
     problems: [
-      "Workflow chaos",
-      "Scattered data",
-      "Reporting delays",
-      "Task ownership confusion",
-      "AI workflow centralization",
-      "Cross-team coordination",
+      "Workflow chaos across teams",
+      "Scattered data & reporting delays",
+      "Manual task coordination",
+      "AI integration fragmentation",
+      "Cross-department visibility gaps",
     ],
-    tech: ["N8N", "AI APIs", "Google Workspace"],
-    featured: false,
-    href: "https://linktr.ee/abdofog",
+    tech: ["N8N", "AI APIs", "Google Workspace", "Supabase", "Flutter", "Discord Bots"],
+    featured: true,
+    href: "https://project-jelc4.vercel.app",
+    challenge:
+      "Teams waste 30-40% of their time on manual coordination, scattered tools, and reactive reporting — slowing velocity and burning out talent.",
+    solution:
+      "Nexaro unifies operations through 7 integrated products: Platform (master hub), Vicious OS (esports ops), Nexaro Life (personal productivity), CRM, HR, Rent OS, and Teams OS — plus AI automations, Notion/Sheets templates, and Discord bots.",
+    outcome:
+      "Early adopters report 40% reduction in operational overhead, faster decision-making through real-time dashboards, and scalable systems that grow with the team.",
+    techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "Supabase", "N8N", "Qwen 2.5", "Claude API"],
+    sellable: false, // Startup vision, not for sale yet
+    pricingSetup: "N/A",
+    pricingRetainer: "N/A",
+    setupTime: "N/A",
+  },
+  {
+    id: "pyramids-queue",
+    slug: "pyramids-queue",
+    title: "Pyramids Queue",
+    subtitle: "MENA Esports Community Hub",
+    description:
+      "Founded the community hub for MENA's Wild Rift ecosystem. Scaled to 10,000+ members. Hosted 25+ casual tournaments and 7 regional qualifiers. Partnered with Riot Games for Summer Camp 2024.",
+    badge: "👥 Community Founder",
+    kpi: "4,000+",
+    kpiLabel: "Community Members",
+    problems: [
+      "Community fragmentation",
+      "Lack of regional tournaments",
+      "Player discovery difficulty",
+      "Scattered event management",
+    ],
+    tech: ["Discord", "Bot Development", "Community Management", "Event Ops"],
+    featured: true,
+    href: "https://discord.gg/wpbFgc8BJT", // No external link yet
+    challenge:
+      "MENA Wild Rift players had no central hub for finding teams, scrims, or tournaments. Community growth was stunted by fragmented Discord servers.",
+    solution:
+      "Built Pyramids Queue as the single source of truth. Implemented automated role management, tournament registration bots, and daily scrim coordination.",
+    outcome:
+      "Grew to 4,000+ members. Became the go-to partner for Riot Games in the region. Successfully ran 7 regional qualifiers.",
+    techStack: ["Discord API", "Python", "Community Strategy", "Riot Games API"],
+    sellable: false,
+    pricingSetup: "N/A",
+    pricingRetainer: "N/A",
+    setupTime: "N/A",
   },
   {
     id: "vicious-os",
@@ -31,7 +72,7 @@ export const products: Product[] = [
     description:
       "The flagship internal operating system for Vicious Esports — a multi-tenant platform managing 170+ players, KPI dashboards, task ownership, access control, and reporting systems.",
     badge: "Featured Project",
-    kpi: "170+",
+    kpi: "230+",
     kpiLabel: "Players Managed",
     problems: [
       "Multi-tenant ops",
@@ -43,27 +84,6 @@ export const products: Product[] = [
     ],
     tech: ["Internal Platform", "Google Workspace", "Custom Dashboards"],
     featured: true,
-  },
-  {
-    id: "pyramids-cup",
-    slug: "pyramids-cup",
-    title: "Pyramids Cup Ecosystem",
-    subtitle: "Esports Tournament Infrastructure",
-    description:
-      "End-to-end tournament ecosystem scaling from 57 teams in Edition 1 to 200+ participants per edition. Built the infrastructure, operations, and community systems that powered 5 consecutive editions.",
-    badge: "Esports",
-    kpi: "3,500+",
-    kpiLabel: "Total Participants",
-    problems: [
-      "Tournament logistics",
-      "Registration systems",
-      "Broadcast coordination",
-      "Community management",
-      "Sponsor reporting",
-      "Cross-edition scaling",
-    ],
-    tech: ["Tournament Systems", "Discord", "Broadcast Tools"],
-    featured: false,
   },
   {
     id: "pc7-automation-stack",
@@ -86,13 +106,14 @@ export const products: Product[] = [
       "Both systems run autonomously with near-zero maintenance. Redeployable for any tournament in 2–3 hours. Monetizable as a service.",
     techStack: ["Python", "Docker", "n8n", "Discord API", "Qwen 2.5:7b", "Ollama", "Google Sheets"],
     sellable: true,
-    pricingSetup: "$200–500",
-    pricingRetainer: "$100–200/month",
-    setupTime: "2–3 hours",
+pricingSetup: "Contact for pricing",
+pricingRetainer: "Custom packages",
+setupTime: "2–3 hours setup",
   },
 ];
 
 export const pyramidEditions: Edition[] = [
+  { name: "Edition 6", teams: 25, participants: 200, views: 52200 },
   { name: "Edition 5", teams: 25, participants: 200, views: 52200 },
   { name: "Edition 4", teams: 30, participants: 395, views: 41000 },
   { name: "Edition 3", teams: 64, participants: 350 },
@@ -115,7 +136,7 @@ export const caseStudies: CaseStudy[] = [
     lessons:
       "Internal tools only succeed when they mirror the actual mental model of the team using them. Spending 40% of the time on discovery and user interviews before building saved weeks of rework.",
     metrics: [
-      { label: "Players Managed", value: "170+" },
+      { label: "Players Managed", value: "230+" },
       { label: "Manual Reports Eliminated", value: "~80%" },
       { label: "Departments Served", value: "4" },
       { label: "Time to Full Adoption", value: "3 weeks" },
@@ -126,19 +147,19 @@ export const caseStudies: CaseStudy[] = [
     id: "pyramids-cup-growth",
     slug: "pyramids-cup-growth",
     title: "Scaling Pyramids Cup",
-    subtitle: "5 editions, 3,500+ participants, zero playbook",
+    subtitle: "6 editions, 5,000+ participants, zero playbook",
     challenge:
       "After a successful but chaotic Edition 1 with 57 teams, the question was: how do you scale a grassroots esports tournament into a recognized regional event without losing the community feel that made it work?",
     approach:
       "Built a progressive infrastructure after each edition — analyzing what broke, what grew, and what the community needed. Introduced dedicated registration flows, broadcast coordination workflows, sponsor reporting templates, and community feedback loops. Each edition had a documented retrospective.",
     outcome:
-      "By Edition 5, the tournament was generating 52,200 views, running 25 teams with tight logistics, and had a recognizable brand in MENA esports. Total participation across all 5 editions exceeded 3,500 players.",
+      "By Edition 6, the tournament was generating 52,200 views, running 25 teams with tight logistics, and had a recognizable brand in MENA esports. Total participation across all editions exceeded 5,000 players.",
     lessons:
       "Growth isn't about doing more — it's about systematizing what already works. The biggest jumps in quality came from removing friction, not adding features.",
     metrics: [
-      { label: "Total Participants", value: "3,500+" },
-      { label: "Editions Delivered", value: "5" },
-      { label: "Peak Views (Ed. 5)", value: "52,200" },
+      { label: "Total Participants", value: "5,000+" },
+      { label: "Editions Delivered", value: "6" },
+      { label: "Live Views (Ed. 5)", value: "52,200" },
       { label: "YoY Participation Growth", value: "30%" },
     ],
     tags: ["Esports", "Operations", "Growth"],
@@ -159,7 +180,7 @@ export const caseStudies: CaseStudy[] = [
     metrics: [
       { label: "Players managed", value: "170+" },
       { label: "Programs delivered", value: "5" },
-      { label: "Teams coordinated", value: "53" },
+      { label: "Teams coordinated", value: "100+" },
       { label: "Partnerships secured", value: "3" },
     ],
     tags: ["Program Management", "Systems Design", "Leadership"],
@@ -167,12 +188,19 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 export const stats: Stat[] = [
-  { label: "Total Participants", displayValue: "3,500+", numericEnd: 3500, suffix: "+", icon: "users" },
-  { label: "Cup Editions", displayValue: "5", numericEnd: 5, suffix: "", icon: "trophy" },
-  { label: "Community Members", displayValue: "3,000+", numericEnd: 3000, suffix: "+", icon: "globe" },
-  { label: "Participation Growth", displayValue: "30%", numericEnd: 30, suffix: "%", icon: "trending-up" },
+  { label: "Community Members", displayValue: "10,000+", numericEnd: 10000, suffix: "+", icon: "globe" },
+  { label: "Tournament Participants", displayValue: "5,000+", numericEnd: 5000, suffix: "+", icon: "users" },
+  { label: "Events Organized", displayValue: "32", numericEnd: 32, suffix: "", icon: "trophy" },
   { label: "Players Managed", displayValue: "170+", numericEnd: 170, suffix: "+", icon: "zap" },
-  { label: "Internal Platforms", displayValue: "2", numericEnd: 2, suffix: "", icon: "layers" },
+  { label: "Teams Coordinated", displayValue: "100+", numericEnd: 100, suffix: "+", icon: "layers" },
+  { label: "Editions Delivered", displayValue: "6", numericEnd: 6, suffix: "", icon: "trophy" },
+];
+
+export const certifications: Certification[] = [
+  { name: "Google Project Management Certificate", status: "Completed", color: "#4f75ff" },
+  { name: "Anthropic AI Certificate", status: "Completed", color: "#4f75ff" },
+  { name: "Flutter & Dart", status: "Completed", color: "#10b981" },
+  { name: "PMP (PMI)", status: "In Progress (2026)", color: "#7b5cf6" },
 ];
 
 export const timeline: TimelineEntry[] = [
@@ -184,32 +212,32 @@ export const timeline: TimelineEntry[] = [
     accent: "#4f75ff",
   },
   {
+    year: "Mar 2023 – Jan 2024",
+    title: "Project Manager — The Purge Tournament",
+    description:
+      "Joined this French company recognized as the gold standard for global events and community management, serving 3M+ players. Managed tournament operations, community coordination, and cross-functional event delivery at scale.",
+    accent: "#4f75ff",
+  },
+  {
     year: "2023",
     title: "Launched Pyramids Cup",
     description:
-      "Founded and launched the Pyramids Cup — a grassroots esports tournament. Edition 1 ran 57 teams, 400 participants. Built the entire operational backbone from scratch.",
+      "Founded Pyramids Queue MENA Region Wild Rift Discord Server. Edition 1 ran 57 teams, 400 participants. Built the entire operational backbone from scratch.",
     accent: "#7b5cf6",
   },
   {
     year: "2024",
-    title: "Summer Camp + Riot Games Partnership",
+    title: "Joined Vicious Esports + Riot Games Partnership",
     description:
-      "Co-created Summer Camp 2024 — 1,800 participants across 53 teams and 5 simultaneous tournament formats. Secured partnership with Riot MENA, The Purge, and Wild Circuit.",
+      "Joined as Operations & Product Systems Manager. Co-created Summer Camp 2024 — 1,800 participants across 53 teams and 5 simultaneous tournament formats. Secured partnership with Riot MENA, The Purge, and Wild Circuit.",
     accent: "#4f75ff",
   },
   {
-    year: "2024",
-    title: "Joined Vicious + Launched OS",
+    year: "2026",
+    title: "Shipped Vicious OS + Founded Nexaro",
     description:
-      "Joined Vicious Esports as Operations & Product Systems Manager. Designed and shipped Vicious OS — the internal operations platform managing 170+ players across all titles.",
+      "Launched Vicious OS managing 170+ players across all titles. Founded Nexaro, a startup with 7-product ecosystem for workflow automation and AI-assisted operations.",
     accent: "#7b5cf6",
-  },
-  {
-    year: "2025",
-    title: "Google PM Certificate + CAPM Path",
-    description:
-      "Completed Google Project Management certification. Currently on the CAPM path to formalize program management credentials and deepen structured project delivery skills.",
-    accent: "#4f75ff",
   },
 ];
 

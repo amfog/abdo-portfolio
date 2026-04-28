@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { certifications } from '@/data';
 
 const skillGroups: Record<string, string[]> = {
   'Operations & Program Management': [
@@ -29,11 +30,6 @@ const lanes = [
   { title: 'Product Operations / Systems Ops', fit: 'Best fit', accent: '#4f75ff' },
   { title: 'Gaming & Esports Operations', fit: 'Natural fit', accent: '#10b981' },
   { title: 'Operations / Program Management', fit: 'Strong fit', accent: '#f59e0b' },
-];
-
-const certs = [
-  { name: 'Google Project Management Certificate', status: 'Completed', color: '#4f75ff' },
-  { name: 'CAPM (PMI)', status: 'In progress 2025', color: '#7b5cf6' },
 ];
 
 export function AboutSection() {
@@ -165,7 +161,7 @@ export function AboutSection() {
               </div>
             </div>
 
-            {/* Certifications */}
+            {/* Certifications - Now pulling from data/index.ts */}
             <div className="glass-card">
               <h3
                 className="text-xs font-semibold uppercase tracking-widest mb-3"
@@ -174,7 +170,7 @@ export function AboutSection() {
                 Certifications
               </h3>
               <div className="space-y-3">
-                {certs.map((cert) => (
+                {certifications.map((cert) => (
                   <div key={cert.name} className="flex items-center justify-between gap-3">
                     <span className="text-sm" style={{ color: 'rgba(255,255,255,0.60)' }}>
                       {cert.name}

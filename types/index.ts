@@ -74,3 +74,8 @@ export interface Edition {
   participants: number;
   views?: number;
 }
+export interface Certification {
+  name: string;
+  status: string;
+  color?: string;
+}

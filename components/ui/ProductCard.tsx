@@ -8,11 +8,12 @@ import type { Product } from '@/types';
 interface ProductCardProps {
   product: Product;
 }
-
+ 
 export default function ProductCard({ product }: ProductCardProps) {
   const [expanded, setExpanded] = useState(false);
   const displayTech = product.tags ?? product.tech ?? [];
   const displaySubtitle = product.tagline ?? product.subtitle;
+  const hasExternalLink = product.href && product.href.startsWith('http');
 
   return (
     <motion.div
@@ -114,16 +115,31 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       )}
 
-      <div className="flex items-center gap-3 mt-auto">
-        <Link
-          href={`/products/${product.slug}`}
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-[#4f75ff] hover:text-white transition-colors duration-200 group/link"
-        >
-          View details
-          <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-          </svg>
-        </Link>
+      <div className="flex items-center gap-3 mt-auto flex-wrap">
+        {hasExternalLink ? (
+          <a
+            href={product.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#7b5cf6] hover:text-white transition-colors duration-200 group/link"
+          >
+            View live ecosystem
+            <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        ) : (
+          <Link
+            href={`/products/${product.slug}`}
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#4f75ff] hover:text-white transition-colors duration-200 group/link"
+          >
+            View details
+            <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Link>
+        )}
+        
         {product.sellable && (
           <button
             onClick={() => setExpanded(!expanded)}
