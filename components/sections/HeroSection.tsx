@@ -55,8 +55,8 @@ export function HeroSection() {
           <strong style={{ color: 'rgba(255,255,255,0.88)', fontWeight: 600 }}>
             Abdelrahman Mohamed Ahmed
           </strong>{' '}
-          — operations architect and product systems lead with 3+ years building
-          workflow platforms, esports ecosystems, and AI-assisted tools across MENA.
+          operations architect and product systems lead with 3+ years building
+          workflow platforms, esports ecosystems, and AI-assisted tools across MENA & EMEA.
         </motion.p>
 
         <motion.p
@@ -83,7 +83,12 @@ export function HeroSection() {
           <Link href="/#contact" className="btn-secondary">
             <Mail size={16} /> Get in touch
           </Link>
-          <a href="/resume.pdf" download className="btn-secondary">
+          <a
+            href="https://linkedin.com/in/devabdelrhaman"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary"
+          >
             <Download size={16} /> Resume
           </a>
         </motion.div>
@@ -93,12 +98,14 @@ export function HeroSection() {
           className="w-full max-w-2xl"
           style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '2.5rem' }}
         >
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
             {[
               { value: '10,000+', label: 'Community Members' },
-              { value: '6', label: 'Editions Delivered' },
-              { value: '7', label: 'Products Built' },
+              { value: '5,000+', label: 'Tournament Participants' },
+              { value: '32', label: 'Events Organized' },
               { value: '230+', label: 'Players Managed' },
+              { value: '25+', label: 'Teams Coordinated' },
+              { value: '6', label: 'Regional Qualifiers Delivered' },
             ].map((s) => (
               <div key={s.label} className="text-center">
                 <p className="text-3xl font-bold gradient-text-brand mb-1">{s.value}</p>

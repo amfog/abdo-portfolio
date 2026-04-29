@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Pre-hydration background — applies before @layer rules and external CSS parses */
+body { background-color: #0d0d20; }
+
 @theme inline {
   --color-primary: #4f75ff;
   --color-secondary: #7b5cf6;

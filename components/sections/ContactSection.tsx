@@ -46,6 +46,8 @@ interface FormState {
   message: string;
 }
 
+const WEB3FORMS_KEY = '73aaed98-3bb4-49dc-9fc0-c683da51ee6e'; // ← paste key from web3forms.com
+
 export default function ContactSection() {
   const [form, setForm] = useState<FormState>({
     name: '',
@@ -53,12 +55,34 @@ export default function ContactSection() {
     subject: '',
     message: '',
   });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(form.subject || 'Portfolio Contact');
-    const body = encodeURIComponent('Name: ' + form.name + '\n\nMessage:\n' + form.message);
-    window.location.href = `mailto:Abdo.fog@gmail.com?subject=${subject}&body=${body}`;
+    setStatus('loading');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          name: form.name,
+          email: form.email,
+          subject: form.subject || 'Portfolio contact',
+          message: form.message,
+          from_name: 'Portfolio Contact Form',
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus('success');
+        setForm({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -218,18 +242,26 @@ export default function ContactSection() {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90"
+              disabled={status === 'loading'}
+              className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
               style={{
                 background: 'linear-gradient(135deg, #4f75ff, #7b5cf6)',
                 boxShadow: '0 0 30px rgba(79,117,255,0.3)',
               }}
             >
-              Send message via email
+              {status === 'loading' ? 'Sending…' : 'Send message'}
             </button>
 
-            <p className="text-white/25 text-xs text-center">
-              Opens your email client with pre-filled content to Abdo.fog@gmail.com
-            </p>
+            {status === 'success' && (
+              <p className="text-emerald-400 text-sm text-center mt-1">
+                ✓ Message sent! I&apos;ll get back to you within 1–2 days.
+              </p>
+            )}
+            {status === 'error' && (
+              <p className="text-red-400 text-sm text-center mt-1">
+                Something went wrong. Email me directly at Abdo.fog@gmail.com
+              </p>
+            )}
           </motion.form>
         </div>
       </div>

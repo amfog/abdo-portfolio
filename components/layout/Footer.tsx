@@ -65,7 +65,18 @@ export default function Footer() {
 
         <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-sm">
-            © 2025 Abdelrahman Mohamed Ahmed · Cairo, Egypt
+            © 2026 Abdelrahman Mohamed Ahmed · Cairo, Egypt
+          </p>
+          <p className="text-xs text-gray-600 mt-1">
+            Built by{' '}
+            <a
+              href="https://project-jelc4.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-500 hover:text-indigo-400 transition-colors"
+            >
+              Nexaro Tech
+            </a>
           </p>
           <p className="text-white/20 text-xs">Systems builder who ships.</p>
         </div>

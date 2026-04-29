@@ -9,25 +9,6 @@ interface StatCardProps {
   index?: number;
 }
 
-function useCounter(end: number, duration: number, isActive: boolean) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!isActive) return;
-    let startTime: number | null = null;
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * end));
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [end, duration, isActive]);
-
-  return count;
-}
-
 const iconMap: Record<string, React.ReactNode> = {
   users: (
     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -62,9 +43,29 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function StatCard({ stat, index = 0 }: StatCardProps) {
+  const [count, setCount] = useState(0);
+  const hasAnimated = useRef(false);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const count = useCounter(stat.numericEnd, 1800, isInView);
+
+  useEffect(() => {
+    if (!isInView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    const duration = 1800;
+    const startTime = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(stat.numericEnd * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+      else setCount(stat.numericEnd);
+    };
+
+    requestAnimationFrame(tick);
+  }, [isInView, stat.numericEnd]);
 
   const colors = ['#4f75ff', '#7b5cf6', '#4f75ff', '#7b5cf6', '#4f75ff', '#7b5cf6'];
   const color = colors[index % colors.length];
@@ -85,7 +86,7 @@ export default function StatCard({ stat, index = 0 }: StatCardProps) {
         {iconMap[stat.icon] ?? null}
       </div>
       <div className="text-3xl font-bold text-white mb-1 tabular-nums">
-        {isInView ? `${count}${stat.suffix}` : `0${stat.suffix}`}
+        {count.toLocaleString()}{stat.suffix}
       </div>
       <div className="text-white/50 text-sm">{stat.label}</div>
     </div>

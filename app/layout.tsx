@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geist.variable} scroll-smooth`}>
+    <html lang="en" className={`${geist.variable} scroll-smooth`} style={{ backgroundColor: '#0d0d20' }}>
       <body className="antialiased bg-[#0d0d20] text-white">
         <div className="min-h-screen flex flex-col">
           <Navbar />

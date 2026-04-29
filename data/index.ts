@@ -39,7 +39,7 @@ export const products: Product[] = [
     title: "Pyramids Queue",
     subtitle: "MENA Esports Community Hub",
     description:
-      "Founded the community hub for MENA's Wild Rift ecosystem. Scaled to 10,000+ members. Hosted 25+ casual tournaments and 7 regional qualifiers. Partnered with Riot Games for Summer Camp 2024.",
+      "Founded the community hub for MENA's Wild Rift ecosystem. Scaled to 4,000+ members. Hosted 25+ casual tournaments and 7 regional qualifiers. Partnered with Riot Games for Summer Camp 2024.",
     badge: "👥 Community Founder",
     kpi: "4,000+",
     kpiLabel: "Community Members",
@@ -70,7 +70,7 @@ export const products: Product[] = [
     title: "Vicious OS",
     subtitle: "Multi-Tenant Operations Platform",
     description:
-      "The flagship internal operating system for Vicious Esports — a multi-tenant platform managing 170+ players, KPI dashboards, task ownership, access control, and reporting systems.",
+      "The flagship internal operating system for Vicious Esports — a multi-tenant platform managing 230+ players, KPI dashboards, task ownership, access control, and reporting systems.",
     badge: "Featured Project",
     kpi: "230+",
     kpiLabel: "Players Managed",
@@ -128,7 +128,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Building Vicious OS",
     subtitle: "From chaos to clarity at scale",
     challenge:
-      "Vicious Esports was managing 170+ players across multiple game titles with no unified system. Contracts, schedules, performance data, and communications lived in scattered spreadsheets and DMs — creating constant bottlenecks and missed information.",
+      "Vicious Esports was managing 230+ players across multiple game titles with no unified system. Contracts, schedules, performance data, and communications lived in scattered spreadsheets and DMs — creating constant bottlenecks and missed information.",
     approach:
       "Designed and built a multi-tenant internal platform from the ground up. Implemented KPI dashboards for performance tracking, task ownership modules with clear accountability, role-based access control, and automated reporting pipelines. Mapped the full operational workflow before writing a single line of config.",
     outcome:
@@ -178,9 +178,9 @@ export const caseStudies: CaseStudy[] = [
     lessons:
       "The best operations system is the one people actually use. Adoption comes from co-design, not mandates. Involve the end-users in building their own workflow.",
     metrics: [
-      { label: "Players managed", value: "170+" },
+      { label: "Players managed", value: "230+" },
       { label: "Programs delivered", value: "5" },
-      { label: "Teams coordinated", value: "100+" },
+      { label: "Teams coordinated", value: "25+" },
       { label: "Partnerships secured", value: "3" },
     ],
     tags: ["Program Management", "Systems Design", "Leadership"],
@@ -191,8 +191,8 @@ export const stats: Stat[] = [
   { label: "Community Members", displayValue: "10,000+", numericEnd: 10000, suffix: "+", icon: "globe" },
   { label: "Tournament Participants", displayValue: "5,000+", numericEnd: 5000, suffix: "+", icon: "users" },
   { label: "Events Organized", displayValue: "32", numericEnd: 32, suffix: "", icon: "trophy" },
-  { label: "Players Managed", displayValue: "170+", numericEnd: 170, suffix: "+", icon: "zap" },
-  { label: "Teams Coordinated", displayValue: "100+", numericEnd: 100, suffix: "+", icon: "layers" },
+  { label: "Players Managed", displayValue: "230+", numericEnd: 230, suffix: "+", icon: "zap" },
+  { label: "Teams Coordinated", displayValue: "25+", numericEnd: 25, suffix: "+", icon: "layers" },
   { label: "Editions Delivered", displayValue: "6", numericEnd: 6, suffix: "", icon: "trophy" },
 ];
 
@@ -233,10 +233,17 @@ export const timeline: TimelineEntry[] = [
     accent: "#4f75ff",
   },
   {
+    year: "2024",
+    title: "Tencent Partner",
+    description:
+      "Collaborated in-house with Tencent on Honor of Kings ecosystem development. Delivered podcasts, community programs, and competitive infrastructure across MENA.",
+    accent: "#4f75ff",
+  },
+  {
     year: "2026",
     title: "Shipped Vicious OS + Founded Nexaro",
     description:
-      "Launched Vicious OS managing 170+ players across all titles. Founded Nexaro, a startup with 7-product ecosystem for workflow automation and AI-assisted operations.",
+      "Launched Vicious OS managing 230+ players across all titles. Founded Nexaro, a startup with 7-product ecosystem for workflow automation and AI-assisted operations.",
     accent: "#7b5cf6",
   },
 ];
