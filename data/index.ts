@@ -39,7 +39,7 @@ export const products: Product[] = [
     title: "Pyramids Queue",
     subtitle: "MENA Esports Community Hub",
     description:
-      "Founded the community hub for MENA's Wild Rift ecosystem. Scaled to 4,000+ members. Hosted 25+ casual tournaments and 7 regional qualifiers. Partnered with Riot Games for Summer Camp 2024.",
+      "Founded the community hub for MENA's Wild Rift ecosystem. Partnered with Riot Games Scaled to 4,000+ members. Hosted 25+ casual tournaments, Summer Camps, Ramadan Nights and 7 regional qualifiers.",
     badge: "👥 Community Founder",
     kpi: "4,000+",
     kpiLabel: "Community Members",
@@ -205,11 +205,18 @@ export const certifications: Certification[] = [
 
 export const timeline: TimelineEntry[] = [
   {
-    year: "2022",
-    title: "Entered the Esports Industry",
+    year: "2019",
+    title: "Professional Wild Rift Player & Analyst",
     description:
-      "Joined the MENA esports ecosystem. Started building foundational knowledge in tournament operations, community management, and digital content systems.",
-    accent: "#4f75ff",
+      "Competed professionally in League of Legends: Wild Rift across MENA. Active streamer and in-game analyst. Liquipedia profile: liquipedia.net/wildrift/F0G",
+    accent: "#06b6d4",
+  },
+  {
+    year: "2021",
+    title: "Founded Pyramids Queue",
+    description:
+      "Founded the Pyramids Queue MENA Region Wild Rift Discord Server. Built the operational backbone from scratch. Edition 1 ran 57 teams and 400 participants.",
+    accent: "#f59e0b",
   },
   {
     year: "Mar 2023 – Jan 2024",
@@ -233,17 +240,16 @@ export const timeline: TimelineEntry[] = [
     accent: "#4f75ff",
   },
   {
-    year: "2024",
-    title: "Tencent Partner",
-    description:
-      "Collaborated in-house with Tencent on Honor of Kings ecosystem development. Delivered podcasts, community programs, and competitive infrastructure across MENA.",
-    accent: "#4f75ff",
-  },
+  year: "2024",
+  title: "Tencent Partner",
+  description: "Collaborated in-house with Tencent on Honor of Kings ecosystem development. Delivered regional qualifiers, community programs, and competitive infrastructure across MENA.",
+  accent: "#4f75ff",
+},
   {
     year: "2026",
     title: "Shipped Vicious OS + Founded Nexaro",
     description:
-      "Launched Vicious OS managing 230+ players across all titles. Founded Nexaro, a startup with 7-product ecosystem for workflow automation and AI-assisted operations.",
+      "Launched Vicious OS managing 230+ players across all titles 8 Departments. Founded Nexaro, a startup with 7-product ecosystem for workflow automation and AI-assisted operations.",
     accent: "#7b5cf6",
   },
 ];
