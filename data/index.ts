@@ -5,10 +5,10 @@ export const products: Product[] = [
     id: "nexaro",
     slug: "nexaro",
     title: "Nexaro",
-    subtitle: "Founder & CEO — AI Workflow Ecosystem",
+    badge: "Startup Vision",
+    subtitle: "Founder & CEO: AI Workflow Ecosystem",
     description:
-      "My flagship venture. Building a suite of 7 integrated operational products powered by AI. Includes Vicious OS, Nexaro Life, CRM, HR, Rent OS, Teams OS, and the Core Platform. Focus: Eliminating operational chaos for modern teams.",
-    badge: " Startup Vision",
+      "Building a suite of 7 integrated operational products powered by AI. Includes Vicious OS, Nexaro Life, CRM, HR, Rent OS, Teams OS, and the Core Platform. Built with N8N automations, Discord bots, and AI APIs to eliminate operational chaos for modern teams.",
     kpi: "7",
     kpiLabel: "Products in Ecosystem",
     problems: [
@@ -18,17 +18,17 @@ export const products: Product[] = [
       "AI integration fragmentation",
       "Cross-department visibility gaps",
     ],
-    tech: ["N8N", "AI APIs", "Google Workspace", "Supabase", "Flutter", "Discord Bots"],
+    tech: ["N8N", "AI APIs", "Supabase", "Flutter", "Discord Bots", "Automations"],
     featured: true,
     href: "https://project-jelc4.vercel.app",
     challenge:
-      "Teams waste 30-40% of their time on manual coordination, scattered tools, and reactive reporting — slowing velocity and burning out talent.",
+      "Teams waste 30-40% of their time on manual coordination, scattered tools, and reactive reporting, slowing velocity and burning out talent.",
     solution:
-      "Nexaro unifies operations through 7 integrated products: Platform (master hub), Vicious OS (esports ops), Nexaro Life (personal productivity), CRM, HR, Rent OS, and Teams OS — plus AI automations, Notion/Sheets templates, and Discord bots.",
+      "Nexaro unifies operations through 7 integrated products: Platform (master hub), Vicious OS (esports ops), Nexaro Life (personal productivity), CRM, HR, Rent OS, and Teams OS, plus AI automations, Notion/Sheets templates, and Discord bots.",
     outcome:
       "Early adopters report 40% reduction in operational overhead, faster decision-making through real-time dashboards, and scalable systems that grow with the team.",
     techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4", "Supabase", "N8N", "Qwen 2.5", "Claude API"],
-    sellable: false, // Startup vision, not for sale yet
+    sellable: false,
     pricingSetup: "N/A",
     pricingRetainer: "N/A",
     setupTime: "N/A",
@@ -37,21 +37,21 @@ export const products: Product[] = [
     id: "pyramids-queue",
     slug: "pyramids-queue",
     title: "Pyramids Queue",
+    badge: "Community Founder",
     subtitle: "MENA Esports Community Hub",
     description:
-      "Founded the community hub for MENA's Wild Rift ecosystem. Partnered with Riot Games Scaled to 4,000+ members. Hosted 25+ casual tournaments, Summer Camps, Ramadan Nights and 7 regional qualifiers.",
-    badge: "👥 Community Founder",
-    kpi: "4,000+",
-    kpiLabel: "Community Members",
+      "Founded the community hub for MENA Wild Rift ecosystem. Partnered with Riot Games. Scaled to 4,961+ players across 20+ events with 1.8M+ total reach and 88K+ Discord watch hours.",
+    kpi: "1.8M+",
+    kpiLabel: "Total Reach",
     problems: [
       "Community fragmentation",
       "Lack of regional tournaments",
       "Player discovery difficulty",
       "Scattered event management",
     ],
-    tech: ["Discord", "Bot Development", "Community Management", "Event Ops"],
+    tech: ["Discord", "Riot Games", "Tournament Ops", "Community", "Event Ops"],
     featured: true,
-    href: "https://discord.gg/wpbFgc8BJT", // No external link yet
+    href: "https://project-c3kqs.vercel.app",
     challenge:
       "MENA Wild Rift players had no central hub for finding teams, scrims, or tournaments. Community growth was stunted by fragmented Discord servers.",
     solution:
@@ -63,52 +63,6 @@ export const products: Product[] = [
     pricingSetup: "N/A",
     pricingRetainer: "N/A",
     setupTime: "N/A",
-  },
-  {
-    id: "vicious-os",
-    slug: "vicious-os",
-    title: "Vicious OS",
-    subtitle: "Multi-Tenant Operations Platform",
-    description:
-      "The flagship internal operating system for Vicious Esports — a multi-tenant platform managing 230+ players, KPI dashboards, task ownership, access control, and reporting systems.",
-    badge: "Featured Project",
-    kpi: "230+",
-    kpiLabel: "Players Managed",
-    problems: [
-      "Multi-tenant ops",
-      "KPI dashboards",
-      "Task ownership",
-      "Access control",
-      "Reporting systems",
-      "Workflow automation",
-    ],
-    tech: ["Internal Platform", "Google Workspace", "Custom Dashboards"],
-    featured: true,
-  },
-  {
-    id: "pc7-automation-stack",
-    slug: "pc7-automation-stack",
-    title: "PC7 Automation Stack",
-    tagline: "Plug-and-play tournament ops automation — registration to support, fully autonomous",
-    description:
-      "Production automation system built for Pyramids Cup 7. Two modular systems: a Discord registration scraper that auto-writes structured team data to Google Sheets, and an AI support bot powered by local Qwen 2.5 that answers player questions strictly from the official rulebook. Reusable for any tournament in 2–3 hours.",
-    kpi: "3–5 hrs",
-    kpiLabel: "Saved per tournament day",
-    status: "live" as const,
-    tags: ["Automation", "AI", "Discord", "Tournament Ops", "Sellable"],
-    color: "from-rose-500 to-pink-600",
-    icon: "🤖",
-    challenge:
-      "Tournament organizers waste 3–5 hours per event day on manual registration intake, answering repetitive rule questions, and copying data between tools.",
-    solution:
-      "Two autonomous systems: System 1 listens to Discord registration channel, parses team submissions via regex, writes 31-column structured rows to Google Sheets, deduplicates, confirms in Discord. System 2 answers @mentions in support channel using Qwen 2.5 local AI with the rulebook embedded — escalates when answer not found.",
-    outcome:
-      "Both systems run autonomously with near-zero maintenance. Redeployable for any tournament in 2–3 hours. Monetizable as a service.",
-    techStack: ["Python", "Docker", "n8n", "Discord API", "Qwen 2.5:7b", "Ollama", "Google Sheets"],
-    sellable: true,
-pricingSetup: "Contact for pricing",
-pricingRetainer: "Custom packages",
-setupTime: "2–3 hours setup",
   },
 ];
 
@@ -188,7 +142,7 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 export const stats: Stat[] = [
-  { label: "Community Members", displayValue: "10,000+", numericEnd: 10000, suffix: "+", icon: "globe" },
+  { label: "Social Media Reach", displayValue: "1.8M+", numericEnd: 1800000, suffix: "+", icon: "globe" },
   { label: "Tournament Participants", displayValue: "5,000+", numericEnd: 5000, suffix: "+", icon: "users" },
   { label: "Events Organized", displayValue: "32", numericEnd: 32, suffix: "", icon: "trophy" },
   { label: "Players Managed", displayValue: "230+", numericEnd: 230, suffix: "+", icon: "zap" },

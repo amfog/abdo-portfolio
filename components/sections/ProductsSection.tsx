@@ -23,7 +23,7 @@ export default function ProductsSection() {
             What I&apos;ve built.
           </h2>
           <p className="text-white/50 max-w-lg">
-            End-to-end systems ownership — from architecture to adoption.
+            End-to-end systems ownership, from architecture to adoption.
           </p>
         </motion.div>
 

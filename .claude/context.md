@@ -104,6 +104,13 @@ font:      Geist (--font-geist)
 
 ---
 
+## Mobile rules
+- All grids: grid-cols-1 on mobile unless stated
+- All sections: px-4 py-16 on mobile
+- No fixed heights on mobile
+- Buttons: full width on mobile
+- Hero mobile: paddingTop 120px, text flows naturally, only 2 nodes visible (Pyramids Queue top-left, Vicious Esports top-right at 160px width), 7wawshi at bottom-80 left-12
+
 ## Known Issues / Watch Out For
 
 - **Tailwind v4** — no `tailwind.config.js`; all config is CSS-first via `@theme` in `globals.css`

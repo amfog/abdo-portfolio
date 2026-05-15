@@ -46,8 +46,8 @@ export default function TimelineSection() {
                 {/* Content Card */}
                 <div className="glass-card p-6 md:p-8 hover:border-white/15 transition-all duration-300">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                    <span 
-                      className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium w-fit whitespace-nowrap"
+                    <span
+                      className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium w-fit whitespace-nowrap mx-auto sm:mx-0"
                       style={{ backgroundColor: `${entry.accent || '#4f75ff'}15`, color: entry.accent || '#4f75ff' }}
                     >
                       {entry.year}

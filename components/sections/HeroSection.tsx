@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Download, Mail } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useRef, useState, useEffect, forwardRef } from 'react';
+import { ArrowRight, Mail, ArrowLeftRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useRef, useState, useEffect, forwardRef, useCallback } from 'react';
 import type { CSSProperties } from 'react';
 
 const fadeUp = (delay = 0) => ({
@@ -32,6 +32,9 @@ type NodeSpec = {
   cardWidth?: number;
   cardPadding?: string;
   titleFontSize?: number;
+  tagFontSize?: number;
+  footerFontSize?: number;
+  compact?: boolean;
 };
 
 type LineData = { x1: number; y1: number; x2: number; y2: number; color: string };
@@ -61,7 +64,6 @@ const NODE_SPECS: NodeSpec[] = [
     revealDelay: 0.5,
     floatDelay: 0.8,
     dotDelay: 0.7,
-    // FIX 2: moved from top: '8%' to top: '2%'
     positionStyle: { position: 'absolute', top: '2%', right: -20, zIndex: 3 },
     body: 'vicious',
     cardBackground: 'rgba(0,0,0,0.45)',
@@ -107,21 +109,61 @@ const NODE_SPECS: NodeSpec[] = [
   },
 ];
 
-function NodeBodyContent({ body, accent }: { body: NodeBodyType; accent: string }) {
+// Mobile-specific overrides — compact cards, repositioned, no refs
+const MOBILE_NODE_SPECS: NodeSpec[] = [
+  {
+    ...NODE_SPECS[0],
+    positionStyle: { position: 'absolute', top: '5%', left: '-8px', zIndex: 3 },
+    cardWidth: 105,
+    titleFontSize: 10,
+    tagFontSize: 7,
+    footerFontSize: 8,
+    compact: true,
+  },
+  {
+    ...NODE_SPECS[1],
+    positionStyle: { position: 'absolute', top: '5%', right: '-8px', zIndex: 3 },
+    cardWidth: 105,
+    titleFontSize: 10,
+    tagFontSize: 7,
+    footerFontSize: 8,
+    compact: true,
+  },
+  {
+    ...NODE_SPECS[2],
+    positionStyle: { position: 'absolute', top: '50%', right: '-8px', zIndex: 3 },
+    cardWidth: 105,
+    titleFontSize: 10,
+    tagFontSize: 7,
+    footerFontSize: 8,
+    compact: true,
+  },
+  {
+    ...NODE_SPECS[3],
+    positionStyle: { position: 'absolute', bottom: '5%', left: '-8px', zIndex: 3 },
+    cardWidth: 105,
+    titleFontSize: 10,
+    tagFontSize: 7,
+    footerFontSize: 8,
+    compact: true,
+  },
+];
+
+function NodeBodyContent({ body, accent, compact = false }: { body: NodeBodyType; accent: string; compact?: boolean }) {
   if (body === 'pyramids') {
     return (
-      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: compact ? 3 : 4, flexWrap: 'wrap' }}>
         {['Discord', 'Esports', 'Riot Partnership'].map((t) => (
           <span
             key={t}
             style={{
-              fontSize: 10,
+              fontSize: compact ? '7px' : 10,
               fontFamily: 'monospace',
               color: accent,
               background: `${accent}1a`,
               border: `1px solid ${accent}40`,
               borderRadius: 3,
-              padding: '1px 5px',
+              padding: compact ? '1px 4px' : '1px 5px',
             }}
           >
             {t}
@@ -135,14 +177,13 @@ function NodeBodyContent({ body, accent }: { body: NodeBodyType; accent: string 
     return (
       <div style={{ display: 'flex', gap: 4 }}>
         {(['Todo', 'Active', 'Done'] as const).map((col, i) => (
-          <div key={col} style={{ flex: 1 }}>
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', marginBottom: 4 }}>
-              {col}
-            </div>
+          <div key={col} style={{ flex: 1, minWidth: compact ? 0 : undefined, overflow: compact ? 'hidden' : undefined }}>
+            <div style={{ fontSize: compact ? '6px' : 10, color: 'rgba(255,255,255,0.4)', marginBottom: 4 }}>{col}</div>
             <div
               style={{
                 height: 4,
                 borderRadius: 2,
+                width: compact ? '100%' : undefined,
                 background: i === 1 ? accent : 'rgba(255,255,255,0.15)',
               }}
             />
@@ -154,18 +195,20 @@ function NodeBodyContent({ body, accent }: { body: NodeBodyType; accent: string 
 
   if (body === 'wildrift') {
     return (
-      <div style={{ display: 'flex', gap: 4 }}>
+      <div style={{ display: 'flex', gap: compact ? 3 : 4, flexWrap: 'wrap', overflow: 'hidden', maxWidth: '100%' }}>
         {['Competitor', 'Analyst'].map((t) => (
           <span
             key={t}
             style={{
-              fontSize: 10,
+              fontSize: compact ? '7px' : 'inherit',
               fontFamily: 'monospace',
               color: accent,
               background: `${accent}1a`,
               border: `1px solid ${accent}40`,
               borderRadius: 3,
-              padding: '1px 5px',
+              padding: compact ? '1px 4px' : '1px 5px',
+              whiteSpace: compact ? 'normal' : 'nowrap',
+              maxWidth: '100%',
             }}
           >
             {t}
@@ -175,22 +218,22 @@ function NodeBodyContent({ body, accent }: { body: NodeBodyType; accent: string 
     );
   }
 
+  // nexaro
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      {[
-        'Nexaro Platform · Master',
-        'CRM · HR · Rent OS · Teams',
-        'AI Automations · Bots',
-      ].map((layer) => (
+      {['Nexaro Platform · Master', 'CRM · HR · Rent OS · Teams', 'AI Automations · Bots'].map((layer) => (
         <div
           key={layer}
           style={{
-            fontSize: 10,
+            fontSize: compact ? '7px' : 10,
             color: 'rgba(255,255,255,0.5)',
             background: 'rgba(123,92,246,0.1)',
             border: '1px solid rgba(123,92,246,0.25)',
             borderRadius: 3,
-            padding: '3px 6px',
+            padding: compact ? '2px 4px' : '3px 6px',
+            overflow: compact ? 'hidden' : undefined,
+            textOverflow: compact ? 'ellipsis' : undefined,
+            whiteSpace: compact ? 'nowrap' : undefined,
           }}
         >
           {layer}
@@ -200,16 +243,14 @@ function NodeBodyContent({ body, accent }: { body: NodeBodyType; accent: string 
   );
 }
 
-// forwardRef so HeroSection can attach position refs to each card's outer wrapper
-const OrbitNode = forwardRef<HTMLDivElement, { spec: NodeSpec }>(function OrbitNode(
-  { spec },
-  ref
-) {
+const OrbitNode = forwardRef<HTMLDivElement, { spec: NodeSpec }>(function OrbitNode({ spec }, ref) {
   const {
     accent, revealDelay, floatDelay, dotDelay, positionStyle,
     body, tag, title, footer, link,
     cardBackground, cardBorderSide, hoverGlow, hoverRotateY = -4,
-    cardWidth = 200, cardPadding = '14px 16px', titleFontSize = 15,
+    cardWidth = 200, cardPadding = '14px 16px',
+    titleFontSize = 15, tagFontSize = 9, footerFontSize = 10,
+    compact = false,
   } = spec;
 
   return (
@@ -223,12 +264,7 @@ const OrbitNode = forwardRef<HTMLDivElement, { spec: NodeSpec }>(function OrbitN
           animate={{ y: [0, -7, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: floatDelay }}
         >
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: 'none', display: 'block' }}
-          >
+          <a href={link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}>
             <motion.div
               style={{
                 width: cardWidth,
@@ -243,6 +279,9 @@ const OrbitNode = forwardRef<HTMLDivElement, { spec: NodeSpec }>(function OrbitN
                 position: 'relative',
                 transformPerspective: 700,
                 backdropFilter: 'blur(12px)',
+                overflow: 'hidden',
+                minWidth: 0,
+                wordBreak: 'break-word',
               }}
               whileHover={{
                 rotateX: 4,
@@ -265,10 +304,9 @@ const OrbitNode = forwardRef<HTMLDivElement, { spec: NodeSpec }>(function OrbitN
                 animate={{ scale: [1, 1.6, 1], opacity: [0.7, 1, 0.7] }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: dotDelay }}
               />
-
               <span
                 style={{
-                  fontSize: 9,
+                  fontSize: tagFontSize,
                   fontFamily: 'monospace',
                   color: accent,
                   background: `${accent}26`,
@@ -281,16 +319,11 @@ const OrbitNode = forwardRef<HTMLDivElement, { spec: NodeSpec }>(function OrbitN
               >
                 {tag}
               </span>
-
               <p style={{ fontSize: titleFontSize, fontWeight: 700, color: '#fff', margin: 0, marginBottom: 8 }}>
                 {title}
               </p>
-
-              <NodeBodyContent body={body} accent={accent} />
-
-              <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', margin: 0, marginTop: 8 }}>
-                {footer}
-              </p>
+              <NodeBodyContent body={body} accent={accent} compact={compact} />
+              <p style={{ fontSize: footerFontSize, color: 'rgba(255,255,255,0.4)', margin: 0, marginTop: 8 }}>{footer}</p>
             </motion.div>
           </a>
         </motion.div>
@@ -299,15 +332,82 @@ const OrbitNode = forwardRef<HTMLDivElement, { spec: NodeSpec }>(function OrbitN
   );
 });
 
-export function HeroSection() {
-  const photoRef = useRef<HTMLDivElement>(null);
-  const pyramidsRef = useRef<HTMLDivElement>(null);
-  const viciousRef = useRef<HTMLDivElement>(null);
-  const nexaroRef = useRef<HTMLDivElement>(null);
-  const wildRiftRef = useRef<HTMLDivElement>(null);
+function AnimatedHeadline({ sizeClass, mb = 'mb-6' }: { sizeClass: string; mb?: string }) {
+  return (
+    <div style={{ position: 'relative', overflow: 'hidden' }}>
+      <h1 className={`${sizeClass} font-bold tracking-tight leading-[1.05] ${mb}`}>
+        <span className="block">
+          {(['Systems', 'builder'] as const).map((word, i) => (
+            <motion.span
+              key={word}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.15, ease: 'easeOut' }}
+              className={`gradient-text-brand inline-block${i === 0 ? ' mr-[0.3em]' : ''}`}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </span>
+        <span className="block">
+          {(['who', 'ships.'] as const).map((word, i) => (
+            <motion.span
+              key={word}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: (i + 2) * 0.15, ease: 'easeOut' }}
+              style={{ color: 'rgba(255,255,255,0.92)' }}
+              className={`inline-block${i === 0 ? ' mr-[0.3em]' : ''}`}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </span>
+      </h1>
+      <motion.div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '60%',
+          height: '100%',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 10,
+        }}
+        initial={{ x: '-100%' }}
+        animate={{ x: '200%' }}
+        transition={{ delay: 1.5, duration: 0.8, ease: 'easeInOut' }}
+      />
+    </div>
+  );
+}
 
+export function HeroSection() {
+  // Desktop flow line refs
+  const photoRef    = useRef<HTMLDivElement>(null);
+  const pyramidsRef = useRef<HTMLDivElement>(null);
+  const viciousRef  = useRef<HTMLDivElement>(null);
+  const nexaroRef   = useRef<HTMLDivElement>(null);
+  const wildRiftRef = useRef<HTMLDivElement>(null);
   const [lines, setLines] = useState<LineData[]>([]);
 
+  // Mobile flip state
+  const [showPhoto, setShowPhoto] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startInterval = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => setShowPhoto((p) => !p), 5000);
+  }, []);
+
+  useEffect(() => {
+    startInterval();
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [startInterval]);
+
+  // Desktop flow lines
   useEffect(() => {
     const COLORS = ['#f59e0b', '#eab308', '#7b5cf6', '#06b6d4'];
 
@@ -318,16 +418,10 @@ export function HeroSection() {
       const photoCy = container.height / 2;
 
       const refs = [pyramidsRef, viciousRef, nexaroRef, wildRiftRef];
-
-      // Edge point selector for each card: (cardRect, relX, relY) → {ex, ey}
       const edgeOf = [
-        // Pyramids (top-left): bottom-right corner
         (r: DOMRect, rx: number, ry: number) => ({ ex: rx + r.width, ey: ry + r.height }),
-        // Vicious (top-right): bottom-left corner
         (r: DOMRect, rx: number, ry: number) => ({ ex: rx, ey: ry + r.height }),
-        // Nexaro (right side): left edge center
         (r: DOMRect, rx: number, ry: number) => ({ ex: rx, ey: ry + r.height / 2 }),
-        // Wild Rift (bottom-left): top-right corner
         (r: DOMRect, rx: number, ry: number) => ({ ex: rx + r.width, ey: ry }),
       ];
 
@@ -353,17 +447,203 @@ export function HeroSection() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(79,117,255,0.10) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(79,117,255,0.10) 0%, transparent 70%)',
         }}
       />
 
-      <div className="container-wide relative z-10 pt-28 pb-20">
+      <div className="container-wide relative z-10 pt-4 lg:pt-16 pb-20">
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-16">
+        {/* ── MOBILE: flip card ── */}
+        <div className="lg:hidden mb-16" style={{ paddingTop: '68px' }}>
+          <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 16 }}>
+            <AnimatePresence mode="wait">
+              {!showPhoto && (
+                <motion.div
+                  key="text"
+                  initial={{ x: -300, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -300, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  drag="x"
+                  dragConstraints={{ left: -100, right: 100 }}
+                  dragElastic={0.2}
+                  onDragEnd={(_, info) => {
+                    if (Math.abs(info.offset.x) > 60) {
+                      setShowPhoto((p) => !p);
+                      startInterval();
+                    }
+                  }}
+                  className="flex flex-col items-center text-center px-4 py-8"
+                >
+                  <span
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium"
+                    style={{
+                      background: 'rgba(16,185,129,0.1)',
+                      border: '1px solid rgba(16,185,129,0.25)',
+                      color: '#34d399',
+                      marginBottom: '20px',
+                    }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Open to new opportunities
+                  </span>
+
+                  <AnimatedHeadline sizeClass="text-4xl sm:text-5xl" mb="mb-4" />
+
+                  <p className="text-sm leading-relaxed max-w-sm" style={{ color: 'rgba(255,255,255,0.62)', marginBottom: '12px' }}>
+                    I&apos;m{' '}
+                    <strong style={{ color: 'rgba(255,255,255,0.88)', fontWeight: 600 }}>
+                      Abdelrahman Mohamed
+                    </strong>{' '}
+                    — ops architect &amp; product systems lead, 3+ years across MENA &amp; EMEA.
+                  </p>
+
+                  <p className="text-xs" style={{ color: 'rgba(255,255,255,0.38)', marginBottom: '24px' }}>
+                    Seeking{' '}
+                    <span style={{ color: '#7b9eff' }}>Product Operations</span>
+                    {' · '}
+                    <span style={{ color: '#7b9eff' }}>Esports Operations</span>
+                    {' · '}
+                    <span style={{ color: '#7b9eff' }}>Program Manager</span>
+                    {' '}roles
+                  </p>
+
+                  <div className="flex flex-col w-full" style={{ gap: '12px' }}>
+                    <Link href="/#products" className="btn-primary w-full justify-center">
+                      See my work <ArrowRight size={15} />
+                    </Link>
+                    <Link href="/#contact" className="btn-secondary w-full justify-center">
+                      <Mail size={14} /> Get in touch
+                    </Link>
+                  </div>
+                </motion.div>
+              )}
+
+              {showPhoto && (
+                <motion.div
+                  key="photo"
+                  initial={{ x: 300, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: 300, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  drag="x"
+                  dragConstraints={{ left: -100, right: 100 }}
+                  dragElastic={0.2}
+                  onDragEnd={(_, info) => {
+                    if (Math.abs(info.offset.x) > 60) {
+                      setShowPhoto((p) => !p);
+                      startInterval();
+                    }
+                  }}
+                >
+                  <div
+                    style={{
+                      position: 'relative',
+                      width: '100%',
+                      height: '520px',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      background: '#0d0d20',
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/images/hero-photo.png"
+                      alt="Abdelrahman Mohamed Ahmed"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                        objectPosition: 'center center',
+                      }}
+                    />
+                    {/* Gradient overlays */}
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0d0d20 0%, transparent 40%)', pointerEvents: 'none' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0d0d20 0%, transparent 25%)', pointerEvents: 'none' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to left, #0d0d20 0%, transparent 25%)', pointerEvents: 'none' }} />
+
+                    {/* Mobile nodes — compact, no refs */}
+                    {MOBILE_NODE_SPECS.map((spec, i) => (
+                      <OrbitNode key={i} spec={spec} />
+                    ))}
+
+                    {/* 7wawshi annotation */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.2, duration: 0.5, ease: 'easeOut' }}
+                      style={{ position: 'absolute', bottom: '200px', left: '-8px', zIndex: 5 }}
+                    >
+                      <motion.div
+                        animate={{ y: [0, -5, 0] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                        style={{ position: 'relative', display: 'inline-block' }}
+                      >
+                        <div
+                          style={{
+                            background: 'rgba(13,18,40,0.92)',
+                            border: '1px solid rgba(249,115,22,0.5)',
+                            borderRadius: 8,
+                            padding: '8px 12px',
+                            backdropFilter: 'blur(8px)',
+                          }}
+                        >
+                          <p style={{ fontSize: 11, fontWeight: 700, color: '#fff', margin: 0 }}>7wawshi</p>
+                          <p style={{ fontSize: 8, fontWeight: 700, color: '#f97316', letterSpacing: 1, margin: 0 }}>ORANGE CAT</p>
+                          <p style={{ fontSize: 8, color: 'rgba(255,255,255,0.5)', margin: 0 }}>sleeps all day,</p>
+                          <p style={{ fontSize: 8, color: 'rgba(255,255,255,0.5)', margin: 0 }}>wakes me up for food</p>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Mobile controls */}
+          <div className="flex flex-col items-center gap-2 mt-4">
+            <div className="flex items-center gap-2">
+              {([false, true] as const).map((isPhotoState) => (
+                <div
+                  key={String(isPhotoState)}
+                  onClick={() => { setShowPhoto(isPhotoState); startInterval(); }}
+                  style={{
+                    width: 20,
+                    height: 6,
+                    borderRadius: 3,
+                    background: showPhoto === isPhotoState ? '#ffffff' : 'rgba(255,255,255,0.25)',
+                    transition: 'background 0.3s',
+                    cursor: 'pointer',
+                  }}
+                />
+              ))}
+            </div>
+            <button
+              onClick={() => { setShowPhoto((p) => !p); startInterval(); }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                color: 'rgba(255,255,255,0.4)',
+                fontSize: 11,
+                padding: 0,
+              }}
+            >
+              <ArrowLeftRight size={12} />
+              swipe to switch
+            </button>
+          </div>
+        </div>
+
+        {/* ── DESKTOP: split grid ── */}
+        <div className="hidden lg:grid lg:grid-cols-2 gap-16 items-start mb-16">
 
           {/* Left column */}
-          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+          <div className="flex flex-col items-start text-left">
 
             <motion.div {...fadeUp(0)}>
               <span
@@ -379,14 +659,7 @@ export function HeroSection() {
               </span>
             </motion.div>
 
-            <motion.h1
-              {...fadeUp(0.1)}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6"
-            >
-              <span className="gradient-text-brand">Systems builder</span>
-              <br />
-              <span style={{ color: 'rgba(255,255,255,0.92)' }}>who ships.</span>
-            </motion.h1>
+            <AnimatedHeadline sizeClass="text-5xl sm:text-6xl md:text-7xl lg:text-8xl" />
 
             <motion.p
               {...fadeUp(0.2)}
@@ -417,7 +690,7 @@ export function HeroSection() {
 
             <motion.div
               {...fadeUp(0.3)}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-4"
+              className="flex flex-wrap items-center justify-start gap-4"
             >
               <Link href="/#products" className="btn-primary">
                 See my work <ArrowRight size={17} />
@@ -425,21 +698,13 @@ export function HeroSection() {
               <Link href="/#contact" className="btn-secondary">
                 <Mail size={16} /> Get in touch
               </Link>
-              <a
-                href="https://linkedin.com/in/devabdelrhaman"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary"
-              >
-                <Download size={16} /> Resume
-              </a>
             </motion.div>
           </div>
 
           {/* Right column */}
-          <div className="hidden lg:block" style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }}>
 
-            {/* Orbit rings behind photo */}
+            {/* Orbit rings */}
             <div
               style={{
                 position: 'absolute',
@@ -494,36 +759,12 @@ export function HeroSection() {
                 alt="Abdelrahman Mohamed Ahmed"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
               />
-              {/* Bottom fade */}
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(to top, #0d0d20 0%, #0d0d20 5%, transparent 45%)',
-                  pointerEvents: 'none',
-                }}
-              />
-              {/* Left fade */}
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(to right, #0d0d20 0%, transparent 35%)',
-                  pointerEvents: 'none',
-                }}
-              />
-              {/* Right fade */}
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(to left, #0d0d20 0%, transparent 35%)',
-                  pointerEvents: 'none',
-                }}
-              />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #0d0d20 0%, #0d0d20 5%, transparent 45%)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0d0d20 0%, transparent 35%)', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to left, #0d0d20 0%, transparent 35%)', pointerEvents: 'none' }} />
             </div>
 
-            {/* Dynamic flow lines — SVG recomputed from real DOM positions */}
+            {/* Dynamic flow lines */}
             {lines.length > 0 && (
               <svg
                 style={{
@@ -555,7 +796,7 @@ export function HeroSection() {
               </svg>
             )}
 
-            {/* Cat annotation */}
+            {/* 7wawshi annotation */}
             <motion.div
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
@@ -576,18 +817,10 @@ export function HeroSection() {
                     backdropFilter: 'blur(8px)',
                   }}
                 >
-                  <p style={{ fontSize: 12, fontWeight: 700, color: '#fff', margin: 0 }}>
-                    7wawshi
-                  </p>
-                  <p style={{ fontSize: 9, fontWeight: 700, color: '#f97316', letterSpacing: 1, margin: 0 }}>
-                    ORANGE CAT
-                  </p>
-                  <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', margin: 0 }}>
-                    sleeps all day,
-                  </p>
-                  <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', margin: 0 }}>
-                    wakes me up for food
-                  </p>
+                  <p style={{ fontSize: 12, fontWeight: 700, color: '#fff', margin: 0 }}>7wawshi</p>
+                  <p style={{ fontSize: 9, fontWeight: 700, color: '#f97316', letterSpacing: 1, margin: 0 }}>ORANGE CAT</p>
+                  <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', margin: 0 }}>sleeps all day,</p>
+                  <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', margin: 0 }}>wakes me up for food</p>
                 </div>
                 <svg
                   width="100"
@@ -605,7 +838,7 @@ export function HeroSection() {
               </motion.div>
             </motion.div>
 
-            {/* Orbit nodes with refs for dynamic line calculation */}
+            {/* Orbit nodes */}
             <OrbitNode ref={pyramidsRef} spec={NODE_SPECS[0]} />
             <OrbitNode ref={viciousRef}  spec={NODE_SPECS[1]} />
             <OrbitNode ref={nexaroRef}   spec={NODE_SPECS[2]} />
@@ -621,12 +854,12 @@ export function HeroSection() {
         >
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
             {[
-              { value: '10,000+', label: 'Community Members' },
-              { value: '5,000+', label: 'Tournament Participants' },
-              { value: '32', label: 'Events Organized' },
-              { value: '230+', label: 'Players Managed' },
-              { value: '25+', label: 'Teams Coordinated' },
-              { value: '6', label: 'Regional Qualifiers Delivered' },
+              { value: '1.8M+',   label: 'Social Media Reach' },
+              { value: '5,000+',  label: 'Tournament Participants' },
+              { value: '32',      label: 'Events Organized' },
+              { value: '230+',    label: 'Players Managed' },
+              { value: '25+',     label: 'Teams Coordinated' },
+              { value: '6',       label: 'Regional Qualifiers' },
             ].map((s) => (
               <div key={s.label} className="text-center">
                 <p className="text-3xl font-bold gradient-text-brand mb-1">{s.value}</p>

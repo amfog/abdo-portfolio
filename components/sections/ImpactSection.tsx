@@ -30,11 +30,11 @@ export function ImpactSection() {
             Numbers that matter.
           </h2>
           <p className="max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.50)' }}>
-            Real outcomes from real systems — measured, tracked, and scaled.
+            Real outcomes from real systems, measured, tracked, and scaled.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
           {stats.map((stat, i) => (
             <StatCard key={stat.label} stat={stat} index={i} />
           ))}

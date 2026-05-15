@@ -61,13 +61,13 @@ export function AboutSection() {
 
             <div className="space-y-4 max-w-prose mb-8" style={{ color: 'rgba(255,255,255,0.60)' }}>
               <p className="text-base leading-relaxed">
-                I started in esports with zero backing — no org, no budget, just a Discord server
+                I started in esports with zero backing, no org, no budget, just a Discord server
                 and a plan. Over three years I built Pyramids Queue into MENA&apos;s recognized Wild Rift
                 ecosystem, ran 6 tournament editions with 5,000+ participants, and partnered with
                 Riot Games.
               </p>
               <p className="text-base leading-relaxed">
-                Along the way I got obsessed with the operational layer — why teams waste time on
+                Along the way I got obsessed with the operational layer: why teams waste time on
                 scattered tools, manual reporting, and broken workflows. That is what Vicious OS and
                 Nexaro AI are about: replacing that chaos with systems that scale.
               </p>
