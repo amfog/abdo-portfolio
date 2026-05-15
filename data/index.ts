@@ -77,67 +77,49 @@ export const pyramidEditions: Edition[] = [
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: "vicious-os-build",
+    id: "pyramids-cup",
+    slug: "pyramids-cup",
+    title: "Pyramids Cup",
+    tag: "Esports Operations",
+    tagline: "Built MENA's first Wild Rift regional qualifier from scratch",
+    problem:
+      "The MENA region had no path to international Wild Rift competition. No qualifiers, no recognition, no infrastructure.",
+    outcome:
+      "6 editions delivered. 5,000+ participants. Riot Games partnership secured. MENA now recognized by EMEA.",
+    stat1: { value: "1.8M+", label: "Total Reach" },
+    stat2: { value: "6", label: "Editions Delivered" },
+    status: "Active",
+    link: "/case-studies/pyramids-cup",
+  },
+  {
+    id: "vicious-os",
     slug: "vicious-os",
-    title: "Building Vicious OS",
-    subtitle: "From chaos to clarity at scale",
-    challenge:
-      "Vicious Esports was managing 230+ players across multiple game titles with no unified system. Contracts, schedules, performance data, and communications lived in scattered spreadsheets and DMs — creating constant bottlenecks and missed information.",
-    approach:
-      "Designed and built a multi-tenant internal platform from the ground up. Implemented KPI dashboards for performance tracking, task ownership modules with clear accountability, role-based access control, and automated reporting pipelines. Mapped the full operational workflow before writing a single line of config.",
+    title: "Vicious OS",
+    tag: "Product Systems",
+    tagline: "Built the internal operating system for a multi-title esports org",
+    problem:
+      "Vicious Esports managed 230+ players across titles with no unified system. Manual reporting consumed 20+ hours per week.",
     outcome:
-      "Eliminated the majority of repetitive manual reporting. The platform became the single source of truth for all player and department operations. Management gained real-time visibility into team health and performance.",
-    lessons:
-      "Internal tools only succeed when they mirror the actual mental model of the team using them. Spending 40% of the time on discovery and user interviews before building saved weeks of rework.",
-    metrics: [
-      { label: "Players Managed", value: "230+" },
-      { label: "Manual Reports Eliminated", value: "~80%" },
-      { label: "Departments Served", value: "4" },
-      { label: "Time to Full Adoption", value: "3 weeks" },
-    ],
-    tags: ["Internal Platform", "Product Design", "Operations"],
+      "Vicious OS unified all operations. Single source of truth for player data, contracts, schedules, and KPIs.",
+    stat1: { value: "230+", label: "Players Managed" },
+    stat2: { value: "80%", label: "Less Manual Work" },
+    status: "Active",
+    link: "/case-studies/vicious-os",
   },
   {
-    id: "pyramids-cup-growth",
-    slug: "pyramids-cup-growth",
-    title: "Scaling Pyramids Cup",
-    subtitle: "6 editions, 5,000+ participants, zero playbook",
-    challenge:
-      "After a successful but chaotic Edition 1 with 57 teams, the question was: how do you scale a grassroots esports tournament into a recognized regional event without losing the community feel that made it work?",
-    approach:
-      "Built a progressive infrastructure after each edition — analyzing what broke, what grew, and what the community needed. Introduced dedicated registration flows, broadcast coordination workflows, sponsor reporting templates, and community feedback loops. Each edition had a documented retrospective.",
+    id: "nexaro",
+    slug: "nexaro",
+    title: "Nexaro",
+    tag: "Startup",
+    tagline: "Building a 7-product AI operations ecosystem as a solo founder",
+    problem:
+      "Modern teams run on disconnected tools. Ops teams waste hours on tasks that should be automated.",
     outcome:
-      "By Edition 6, the tournament was generating 52,200 views, running 25 teams with tight logistics, and had a recognizable brand in MENA esports. Total participation across all editions exceeded 5,000 players.",
-    lessons:
-      "Growth isn't about doing more — it's about systematizing what already works. The biggest jumps in quality came from removing friction, not adding features.",
-    metrics: [
-      { label: "Total Participants", value: "5,000+" },
-      { label: "Editions Delivered", value: "6" },
-      { label: "Live Views (Ed. 5)", value: "52,200" },
-      { label: "YoY Participation Growth", value: "30%" },
-    ],
-    tags: ["Esports", "Operations", "Growth"],
-  },
-  {
-    id: "ops-scaling",
-    slug: "ops-scaling",
-    title: "Scaling Operations Across Departments",
-    subtitle: "Building systems that outlast their builders",
-    challenge:
-      "As the scope of responsibilities grew to span content, esports, community, and product — the lack of shared operational infrastructure meant every team was building from scratch. Coordination overhead was killing velocity.",
-    approach:
-      "Introduced a unified ops framework: shared project templates, cross-team OKR alignment, async-first communication standards, and a central dashboard aggregating KPIs from all departments. Ran workshops to embed the new workflows into daily habits rather than just documenting them.",
-    outcome:
-      "Teams moved faster with less coordination overhead. Reporting to leadership improved from ad-hoc to structured weekly summaries with real data. New team members could onboard in half the previous time.",
-    lessons:
-      "The best operations system is the one people actually use. Adoption comes from co-design, not mandates. Involve the end-users in building their own workflow.",
-    metrics: [
-      { label: "Players managed", value: "230+" },
-      { label: "Programs delivered", value: "5" },
-      { label: "Teams coordinated", value: "25+" },
-      { label: "Partnerships secured", value: "3" },
-    ],
-    tags: ["Program Management", "Systems Design", "Leadership"],
+      "7 integrated products in development. CRM, HR, Rent OS, Teams OS, Vicious OS, Nexaro Life, and Core Platform.",
+    stat1: { value: "7", label: "Products Building" },
+    stat2: { value: "2026", label: "Founded" },
+    status: "In Development",
+    link: "/case-studies/nexaro",
   },
 ];
 
@@ -166,7 +148,7 @@ export const timeline: TimelineEntry[] = [
     accent: "#06b6d4",
   },
   {
-    year: "2021",
+    year: "2023",
     title: "Founded Pyramids Queue",
     description:
       "Founded the Pyramids Queue MENA Region Wild Rift Discord Server. Built the operational backbone from scratch. Edition 1 ran 57 teams and 400 participants.",
@@ -174,7 +156,7 @@ export const timeline: TimelineEntry[] = [
   },
   {
     year: "Mar 2023 – Jan 2024",
-    title: "Project Manager — The Purge Tournament",
+    title: "Project Manager, The Purge Tournament",
     description:
       "Joined this French company recognized as the gold standard for global events and community management, serving 3M+ players. Managed tournament operations, community coordination, and cross-functional event delivery at scale.",
     accent: "#4f75ff",
@@ -190,20 +172,20 @@ export const timeline: TimelineEntry[] = [
     year: "2024",
     title: "Joined Vicious Esports + Riot Games Partnership",
     description:
-      "Joined as Operations & Product Systems Manager. Co-created Summer Camp 2024 — 1,800 participants across 53 teams and 5 simultaneous tournament formats. Secured partnership with Riot MENA, The Purge, and Wild Circuit.",
+      "Joined as Operations & Product Systems Manager. Co-created Summer Camp 2024 with 1,800 participants across 53 teams and 5 simultaneous tournament formats. Secured partnership with Riot MENA, The Purge, and Wild Circuit.",
     accent: "#4f75ff",
   },
   {
-  year: "2024",
-  title: "Tencent Partner",
-  description: "Collaborated in-house with Tencent on Honor of Kings ecosystem development. Delivered regional qualifiers, community programs, and competitive infrastructure across MENA.",
-  accent: "#4f75ff",
-},
+    year: "2024",
+    title: "Tencent Partner",
+    description: "Collaborated in-house with Tencent on Honor of Kings ecosystem development. Delivered regional qualifiers, community programs, and competitive infrastructure across MENA.",
+    accent: "#4f75ff",
+  },
   {
     year: "2026",
     title: "Shipped Vicious OS + Founded Nexaro",
     description:
-      "Launched Vicious OS managing 230+ players across all titles 8 Departments. Founded Nexaro, a startup with 7-product ecosystem for workflow automation and AI-assisted operations.",
+      "Launched Vicious OS managing 230+ players across all titles and 8 departments. Founded Nexaro, a startup with a 7-product ecosystem for workflow automation and AI-assisted operations.",
     accent: "#7b5cf6",
   },
 ];

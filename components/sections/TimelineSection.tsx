@@ -17,7 +17,7 @@ export default function TimelineSection() {
           <span className="text-xs font-semibold tracking-wider text-[#4f75ff] uppercase mb-3 block">Timeline</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">The journey so far.</h2>
           <p className="text-white/60 max-w-2xl mx-auto text-lg">
-            4 years of building, shipping, and growing — from the first tournament to a startup vision.
+            4 years of building, shipping, and growing, from the first tournament to a startup vision.
           </p>
         </motion.div>
 

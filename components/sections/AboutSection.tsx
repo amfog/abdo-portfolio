@@ -32,6 +32,8 @@ const lanes = [
   { title: 'Operations / Program Management', fit: 'Strong fit', accent: '#f59e0b' },
 ];
 
+
+
 export function AboutSection() {
   return (
     <section id="about" className="section-padding relative">
@@ -46,7 +48,7 @@ export function AboutSection() {
       <div className="container-wide relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-          {/* Left: bio + target role */}
+          {/* Left: bio + MENA map + target role */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -59,26 +61,42 @@ export function AboutSection() {
               <span className="gradient-text-brand">teams scale faster.</span>
             </h2>
 
-            <div className="space-y-4 max-w-prose mb-8" style={{ color: 'rgba(255,255,255,0.60)' }}>
+            <div className="space-y-4 max-w-prose mb-6" style={{ color: 'rgba(255,255,255,0.60)' }}>
               <p className="text-base leading-relaxed">
-                I started in esports with zero backing, no org, no budget, just a Discord server
-                and a plan. Over three years I built Pyramids Queue into MENA&apos;s recognized Wild Rift
-                ecosystem, ran 6 tournament editions with 5,000+ participants, and partnered with
-                Riot Games.
+                I am Abdelrahman Mohamed Ahmed, founder of Nexaro, Project Manager at Vicious Esports,
+                and one of the people who helped put MENA on the Wild Rift esports map.
               </p>
               <p className="text-base leading-relaxed">
-                Along the way I got obsessed with the operational layer: why teams waste time on
-                scattered tools, manual reporting, and broken workflows. That is what Vicious OS and
-                Nexaro AI are about: replacing that chaos with systems that scale.
+                In 2023, the MENA region had no voice in Wild Rift esports. No regional qualifiers.
+                No path to international competition. Just a passionate community with potential.
+                Together with that community, we built Pyramids Queue and launched the first Pyramids
+                Cup with 57 teams. Three years later: 6 editions delivered, 5,000+ participants, 1.8M+
+                social media reach, and an official Riot Games partnership. We put MENA on the map.
               </p>
               <p className="text-base leading-relaxed">
-                I am currently looking for a Product Operations, Esports Operations, or Program
-                Manager role where I can own the operational infrastructure of something ambitious.
+                In 2024 I joined Vicious Esports as Project Manager, shipped Vicious OS managing 230+
+                players across multiple titles, and coordinated 25+ department teams. Before that I
+                worked with The Purge Tournament, a French company serving 3M+ players globally as
+                the gold standard for competitive event management.
+              </p>
+              <p className="text-base leading-relaxed">
+                Now I am building Nexaro full time, a 7-product AI-powered operations ecosystem.
               </p>
             </div>
+            <span style={{
+              color: '#4f75ff',
+              fontWeight: 600,
+              fontSize: '1.125rem',
+              marginTop: '28px',
+              display: 'block',
+              borderLeft: '3px solid #4f75ff',
+              paddingLeft: '16px',
+            }}>
+              I am currently looking for a Product Operations, Esports Operations, or Program Manager role where I can own the operational infrastructure of something ambitious.
+            </span>
 
             {/* What I'm looking for */}
-            <div className="glass-card">
+            <div className="glass-card mt-8">
               <h3 className="text-white font-semibold mb-4">What I&apos;m Looking For</h3>
               <div className="space-y-2">
                 {lanes.map((r) => (
@@ -161,7 +179,7 @@ export function AboutSection() {
               </div>
             </div>
 
-            {/* Certifications - Now pulling from data/index.ts */}
+            {/* Certifications */}
             <div className="glass-card">
               <h3
                 className="text-xs font-semibold uppercase tracking-widest mb-3"

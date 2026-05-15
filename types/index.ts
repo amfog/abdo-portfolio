@@ -32,18 +32,14 @@ export interface CaseStudy {
   id: string;
   slug: string;
   title: string;
-  subtitle: string;
-  challenge: string;
-  approach: string;
+  tag: string;
+  tagline: string;
+  problem: string;
   outcome: string;
-  lessons: string;
-  metrics: Metric[];
-  tags: string[];
-}
-
-export interface Metric {
-  label: string;
-  value: string;
+  stat1: { value: string; label: string };
+  stat2: { value: string; label: string };
+  status: 'Active' | 'In Development';
+  link: string;
 }
 
 export interface TimelineEntry {

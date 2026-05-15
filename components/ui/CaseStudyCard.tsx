@@ -9,9 +9,11 @@ interface CaseStudyCardProps {
   index?: number;
 }
 
+const ACCENTS = ['#4f75ff', '#7b5cf6', '#10b981'];
+
 export default function CaseStudyCard({ caseStudy, index = 0 }: CaseStudyCardProps) {
-  const accentColors = ['#4f75ff', '#7b5cf6', '#4f75ff'];
-  const accent = accentColors[index % accentColors.length];
+  const accent = ACCENTS[index % ACCENTS.length];
+  const isActive = caseStudy.status === 'Active';
 
   return (
     <motion.div
@@ -31,46 +33,53 @@ export default function CaseStudyCard({ caseStudy, index = 0 }: CaseStudyCardPro
         style={{ background: `radial-gradient(circle at 50% 0%, ${accent}06, transparent 70%)` }}
       />
 
-      <div className="p-8 flex flex-col flex-1">
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {caseStudy.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs px-2.5 py-0.5 rounded-full font-medium"
-              style={{ background: `${accent}15`, color: accent, border: `1px solid ${accent}30` }}
-            >
-              {tag}
-            </span>
-          ))}
+      <div className="p-7 flex flex-col flex-1">
+        {/* Tag + status row */}
+        <div className="flex items-center justify-between gap-2 mb-4">
+          <span
+            className="text-xs px-2.5 py-0.5 rounded-full font-medium"
+            style={{ background: `${accent}15`, color: accent, border: `1px solid ${accent}30` }}
+          >
+            {caseStudy.tag}
+          </span>
+          <span
+            className="text-xs px-2.5 py-0.5 rounded-full font-medium"
+            style={{
+              background: isActive ? 'rgba(16,185,129,0.1)' : 'rgba(245,158,11,0.1)',
+              color: isActive ? '#34d399' : '#f59e0b',
+              border: `1px solid ${isActive ? 'rgba(16,185,129,0.25)' : 'rgba(245,158,11,0.25)'}`,
+            }}
+          >
+            {caseStudy.status}
+          </span>
         </div>
 
         <h3 className="text-white font-bold text-xl mb-1">{caseStudy.title}</h3>
-        <p className="text-white/40 text-sm mb-4">{caseStudy.subtitle}</p>
+        <p className="text-sm mb-5" style={{ color: 'rgba(255,255,255,0.40)' }}>{caseStudy.tagline}</p>
 
         <div className="space-y-3 mb-5 flex-1">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-1">Challenge</p>
-            <p className="text-white/60 text-sm leading-relaxed line-clamp-2">{caseStudy.challenge}</p>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: 'rgba(255,255,255,0.28)' }}>Problem</p>
+            <p className="text-sm leading-relaxed line-clamp-2" style={{ color: 'rgba(255,255,255,0.58)' }}>{caseStudy.problem}</p>
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-1">Outcome</p>
-            <p className="text-white/60 text-sm leading-relaxed line-clamp-2">{caseStudy.outcome}</p>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: 'rgba(255,255,255,0.28)' }}>Outcome</p>
+            <p className="text-sm leading-relaxed line-clamp-2" style={{ color: 'rgba(255,255,255,0.58)' }}>{caseStudy.outcome}</p>
           </div>
         </div>
 
-        {/* Metrics */}
+        {/* Stats */}
         <div className="grid grid-cols-2 gap-2 mb-5">
-          {caseStudy.metrics.slice(0, 4).map((m) => (
-            <div key={m.label} className="glass rounded-lg p-3 text-center">
-              <div className="text-lg font-bold" style={{ color: accent }}>{m.value}</div>
-              <div className="text-white/40 text-xs mt-0.5">{m.label}</div>
+          {[caseStudy.stat1, caseStudy.stat2].map((s) => (
+            <div key={s.label} className="glass rounded-lg p-3 text-center">
+              <div className="text-lg font-bold" style={{ color: accent }}>{s.value}</div>
+              <div className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.38)' }}>{s.label}</div>
             </div>
           ))}
         </div>
 
         <Link
-          href={`/case-studies/${caseStudy.slug}`}
+          href={caseStudy.link}
           className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 group/link"
           style={{ color: accent }}
         >

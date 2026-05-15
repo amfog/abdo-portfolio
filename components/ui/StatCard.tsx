@@ -85,7 +85,10 @@ export default function StatCard({ stat, index = 0 }: StatCardProps) {
       >
         {iconMap[stat.icon] ?? null}
       </div>
-      <div className="text-3xl font-bold text-white mb-1 tabular-nums">
+      <div
+        className="font-bold text-white mb-1 tabular-nums"
+        style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', minWidth: 0, overflow: 'hidden', wordBreak: 'break-all' }}
+      >
         {count.toLocaleString()}{stat.suffix}
       </div>
       <div className="text-white/50 text-sm">{stat.label}</div>

@@ -495,7 +495,7 @@ export function HeroSection() {
                     <strong style={{ color: 'rgba(255,255,255,0.88)', fontWeight: 600 }}>
                       Abdelrahman Mohamed
                     </strong>{' '}
-                    — ops architect &amp; product systems lead, 3+ years across MENA &amp; EMEA.
+                    , ops architect &amp; product systems lead, 3+ years across MENA &amp; EMEA.
                   </p>
 
                   <p className="text-xs" style={{ color: 'rgba(255,255,255,0.38)', marginBottom: '24px' }}>
