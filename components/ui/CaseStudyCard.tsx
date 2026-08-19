@@ -3,17 +3,24 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import type { CaseStudy } from '@/types';
+import type { en } from '@/data/translations/en';
+
+type CaseStudyT = typeof en['caseStudies'];
 
 interface CaseStudyCardProps {
   caseStudy: CaseStudy;
   index?: number;
+  caseStudyT?: CaseStudyT;
 }
 
 const ACCENTS = ['#4f75ff', '#7b5cf6', '#10b981'];
 
-export default function CaseStudyCard({ caseStudy, index = 0 }: CaseStudyCardProps) {
+export default function CaseStudyCard({ caseStudy, index = 0, caseStudyT }: CaseStudyCardProps) {
   const accent = ACCENTS[index % ACCENTS.length];
   const isActive = caseStudy.status === 'Active';
+  const problemLabel = caseStudyT?.problemLabel ?? 'Problem';
+  const outcomeLabel = caseStudyT?.outcomeLabel ?? 'Outcome';
+  const readLabel = caseStudyT?.readCaseStudy ?? 'Read case study';
 
   return (
     <motion.div
@@ -59,11 +66,11 @@ export default function CaseStudyCard({ caseStudy, index = 0 }: CaseStudyCardPro
 
         <div className="space-y-3 mb-5 flex-1">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: 'rgba(255,255,255,0.28)' }}>Problem</p>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: 'rgba(255,255,255,0.28)' }}>{problemLabel}</p>
             <p className="text-sm leading-relaxed line-clamp-2" style={{ color: 'rgba(255,255,255,0.58)' }}>{caseStudy.problem}</p>
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: 'rgba(255,255,255,0.28)' }}>Outcome</p>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: 'rgba(255,255,255,0.28)' }}>{outcomeLabel}</p>
             <p className="text-sm leading-relaxed line-clamp-2" style={{ color: 'rgba(255,255,255,0.58)' }}>{caseStudy.outcome}</p>
           </div>
         </div>
@@ -83,7 +90,7 @@ export default function CaseStudyCard({ caseStudy, index = 0 }: CaseStudyCardPro
           className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200 group/link"
           style={{ color: accent }}
         >
-          Read case study
+          {readLabel}
           <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
           </svg>

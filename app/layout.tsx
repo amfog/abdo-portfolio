@@ -3,6 +3,7 @@ import { Geist } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const geist = Geist({
   subsets: ['latin'],
@@ -40,15 +41,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${geist.variable} scroll-smooth`} style={{ backgroundColor: '#0d0d20' }}>
       <body className="antialiased bg-[#0d0d20] text-white">
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
+        <LanguageProvider>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
 
-          <main className="flex-1 w-full pt-16">
-            {children}
-          </main>
+            <main className="flex-1 w-full pt-16">
+              {children}
+            </main>
 
-          <Footer />
-        </div>
+            <Footer />
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );

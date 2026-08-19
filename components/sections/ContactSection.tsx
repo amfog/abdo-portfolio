@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { en } from '@/data/translations/en';
+import { ar } from '@/data/translations/ar';
 
 const contactLinks = [
   {
@@ -49,6 +52,9 @@ interface FormState {
 const WEB3FORMS_KEY = '73aaed98-3bb4-49dc-9fc0-c683da51ee6e'; // ← paste key from web3forms.com
 
 export default function ContactSection() {
+  const { lang } = useLanguage();
+  const ct = lang === 'ar' ? ar.contact : en.contact;
+
   const [form, setForm] = useState<FormState>({
     name: '',
     email: '',
@@ -105,14 +111,13 @@ export default function ContactSection() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border-white/10 text-xs text-white/50 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#4f75ff]" />
-            Contact
+            {ct.badge}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Let&apos;s build something together.
+            {ct.heading}
           </h2>
           <p className="text-white/50 max-w-lg mx-auto">
-            Open to Product Operations, Program Management, and Systems Leadership roles. Drop me a
-            message or reach out directly.
+            {ct.subtitle}
           </p>
         </motion.div>
 
@@ -135,7 +140,7 @@ export default function ContactSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                whileHover={{ x: 4 }}
+                whileHover={{ scale: 1.01 }}
                 className="flex items-center gap-4 glass rounded-2xl p-5 w-full hover:border-white/15 transition-all duration-300 group"
               >
                 <div
@@ -166,12 +171,9 @@ export default function ContactSection() {
             <div className="glass rounded-2xl p-5 border border-emerald-500/15 w-full">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-emerald-400 text-sm font-medium">Available for opportunities</span>
+                <span className="text-emerald-400 text-sm font-medium">{ct.available}</span>
               </div>
-              <p className="text-white/40 text-sm">
-                Currently open to full-time roles, contract work, and advisory positions in product
-                operations and systems management.
-              </p>
+              <p className="text-white/40 text-sm">{ct.availableNote}</p>
             </div>
           </motion.div>
 
@@ -187,27 +189,27 @@ export default function ContactSection() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-white/50 text-xs mb-1.5 font-medium uppercase tracking-wider">
-                  Name
+                  {ct.form.name}
                 </label>
                 <input
                   type="text"
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="Your name"
+                  placeholder={ct.form.namePlaceholder}
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 transition-all duration-200"
                 />
               </div>
               <div>
                 <label className="block text-white/50 text-xs mb-1.5 font-medium uppercase tracking-wider">
-                  Email
+                  {ct.form.email}
                 </label>
                 <input
                   type="email"
                   required
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  placeholder="your@email.com"
+                  placeholder={ct.form.emailPlaceholder}
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 transition-all duration-200"
                 />
               </div>
@@ -215,27 +217,27 @@ export default function ContactSection() {
 
             <div>
               <label className="block text-white/50 text-xs mb-1.5 font-medium uppercase tracking-wider">
-                Subject
+                {ct.form.subject}
               </label>
               <input
                 type="text"
                 value={form.subject}
                 onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                placeholder="What's this about?"
+                placeholder={ct.form.subjectPlaceholder}
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 transition-all duration-200"
               />
             </div>
 
             <div>
               <label className="block text-white/50 text-xs mb-1.5 font-medium uppercase tracking-wider">
-                Message
+                {ct.form.message}
               </label>
               <textarea
                 required
                 rows={5}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                placeholder="Tell me about your project, opportunity, or just say hello..."
+                placeholder={ct.form.messagePlaceholder}
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-[#4f75ff]/50 transition-all duration-200 resize-none"
               />
             </div>
@@ -249,17 +251,17 @@ export default function ContactSection() {
                 boxShadow: '0 0 30px rgba(79,117,255,0.3)',
               }}
             >
-              {status === 'loading' ? 'Sending…' : 'Send message'}
+              {status === 'loading' ? ct.form.sending : ct.form.send}
             </button>
 
             {status === 'success' && (
               <p className="text-emerald-400 text-sm text-center mt-1">
-                ✓ Message sent! I&apos;ll get back to you within 1–2 days.
+                {ct.form.success}
               </p>
             )}
             {status === 'error' && (
               <p className="text-red-400 text-sm text-center mt-1">
-                Something went wrong. Email me directly at Abdo.fog@gmail.com
+                {ct.form.error}
               </p>
             )}
           </motion.form>

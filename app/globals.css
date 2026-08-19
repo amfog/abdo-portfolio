@@ -257,3 +257,12 @@ body { background-color: #0d0d20; }
     font-size: clamp(1.5rem, 5vw, 3rem);
   }
 }
+
+/* RTL support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .flex-row-auto {
+  flex-direction: row-reverse;
+}

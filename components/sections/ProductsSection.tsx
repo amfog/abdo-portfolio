@@ -3,8 +3,28 @@
 import { motion } from 'framer-motion';
 import ProductCard from '@/components/ui/ProductCard';
 import { products } from '@/data';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { en } from '@/data/translations/en';
+import { ar } from '@/data/translations/ar';
 
 export default function ProductsSection() {
+  const { lang } = useLanguage();
+  const t = lang === 'ar' ? ar : en;
+  const p = t.products;
+
+  const localizedProducts = products.map((product) => {
+    const card = p.cards[product.slug as keyof typeof p.cards];
+    if (!card) return product;
+    return {
+      ...product,
+      title: card.title,
+      badge: card.badge,
+      subtitle: card.subtitle,
+      description: card.description,
+      kpiLabel: card.kpiLabel,
+    };
+  });
+
   return (
     <section id="products" className="relative py-16 md:py-20">
       <div className="container">
@@ -17,19 +37,19 @@ export default function ProductsSection() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border-white/10 text-xs text-white/50 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#7b5cf6]" />
-            Systems Built
+            {p.badge}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
-            What I&apos;ve built.
+            {p.heading}
           </h2>
           <p className="text-white/50 max-w-lg">
-            End-to-end systems ownership, from architecture to adoption.
+            {p.subtitle}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {localizedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} lang={lang} productT={p} />
           ))}
         </div>
       </div>

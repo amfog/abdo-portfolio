@@ -2,6 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { certifications } from '@/data';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { en } from '@/data/translations/en';
+import { ar } from '@/data/translations/ar';
 
 const skillGroups: Record<string, string[]> = {
   'Operations & Program Management': [
@@ -26,15 +29,15 @@ const tools = [
   'Trello/Asana/Jira', 'Claude/ChatGPT/Groq APIs', 'N8N',
 ];
 
-const lanes = [
-  { title: 'Product Operations / Systems Ops', fit: 'Best fit', accent: '#4f75ff' },
-  { title: 'Gaming & Esports Operations', fit: 'Natural fit', accent: '#10b981' },
-  { title: 'Operations / Program Management', fit: 'Strong fit', accent: '#f59e0b' },
-];
-
-
+const laneAccents = ['#4f75ff', '#10b981', '#f59e0b'];
 
 export function AboutSection() {
+  const { lang } = useLanguage();
+  const t = lang === 'ar' ? ar : en;
+  const a = t.about;
+
+  const lanes = a.lanes.map((lane, i) => ({ ...lane, accent: laneAccents[i] }));
+
   return (
     <section id="about" className="section-padding relative">
       <div
@@ -55,33 +58,17 @@ export function AboutSection() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6 }}
           >
-            <span className="section-label">About</span>
+            <span className="section-label">{a.sectionLabel}</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              I build systems that help{' '}
-              <span className="gradient-text-brand">teams scale faster.</span>
+              {a.heading}{' '}
+              <span className="gradient-text-brand">{a.headingHighlight}</span>
             </h2>
 
             <div className="space-y-4 max-w-prose mb-6" style={{ color: 'rgba(255,255,255,0.60)' }}>
-              <p className="text-base leading-relaxed">
-                I am Abdelrahman Mohamed Ahmed, founder of Nexaro, Project Manager at Vicious Esports,
-                and one of the people who helped put MENA on the Wild Rift esports map.
-              </p>
-              <p className="text-base leading-relaxed">
-                In 2023, the MENA region had no voice in Wild Rift esports. No regional qualifiers.
-                No path to international competition. Just a passionate community with potential.
-                Together with that community, we built Pyramids Queue and launched the first Pyramids
-                Cup with 57 teams. Three years later: 6 editions delivered, 5,000+ participants, 1.8M+
-                social media reach, and an official Riot Games partnership. We put MENA on the map.
-              </p>
-              <p className="text-base leading-relaxed">
-                In 2024 I joined Vicious Esports as Project Manager, shipped Vicious OS managing 230+
-                players across multiple titles, and coordinated 25+ department teams. Before that I
-                worked with The Purge Tournament, a French company serving 3M+ players globally as
-                the gold standard for competitive event management.
-              </p>
-              <p className="text-base leading-relaxed">
-                Now I am building Nexaro full time, a 7-product AI-powered operations ecosystem.
-              </p>
+              <p className="text-base leading-relaxed">{a.bio1}</p>
+              <p className="text-base leading-relaxed">{a.bio2}</p>
+              <p className="text-base leading-relaxed">{a.bio3}</p>
+              <p className="text-base leading-relaxed">{a.bio4}</p>
             </div>
             <span style={{
               color: '#4f75ff',
@@ -89,15 +76,15 @@ export function AboutSection() {
               fontSize: '1.125rem',
               marginTop: '28px',
               display: 'block',
-              borderLeft: '3px solid #4f75ff',
-              paddingLeft: '16px',
+              borderInlineStart: '3px solid #4f75ff',
+              paddingInlineStart: '16px',
             }}>
-              I am currently looking for a Product Operations, Esports Operations, or Program Manager role where I can own the operational infrastructure of something ambitious.
+              {a.seekingText}
             </span>
 
             {/* What I'm looking for */}
             <div className="glass-card mt-8">
-              <h3 className="text-white font-semibold mb-4">What I&apos;m Looking For</h3>
+              <h3 className="text-white font-semibold mb-4">{a.lookingFor}</h3>
               <div className="space-y-2">
                 {lanes.map((r) => (
                   <div
@@ -144,7 +131,7 @@ export function AboutSection() {
                   className="text-xs font-semibold uppercase tracking-widest mb-3"
                   style={{ color: 'rgba(255,255,255,0.45)' }}
                 >
-                  {group}
+                  {a.skillGroups[group as keyof typeof a.skillGroups] ?? group}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {tags.map((tag) => (
@@ -160,7 +147,7 @@ export function AboutSection() {
                 className="text-xs font-semibold uppercase tracking-widest mb-3"
                 style={{ color: 'rgba(255,255,255,0.45)' }}
               >
-                Tools
+                {a.toolsLabel}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {tools.map((tool) => (
@@ -185,7 +172,7 @@ export function AboutSection() {
                 className="text-xs font-semibold uppercase tracking-widest mb-3"
                 style={{ color: 'rgba(255,255,255,0.45)' }}
               >
-                Certifications
+                {a.certsLabel}
               </h3>
               <div className="space-y-3">
                 {certifications.map((cert) => (

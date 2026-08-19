@@ -5,6 +5,9 @@ import { ArrowRight, Mail, ArrowLeftRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect, forwardRef, useCallback } from 'react';
 import type { CSSProperties } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { en } from '@/data/translations/en';
+import { ar } from '@/data/translations/ar';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
@@ -332,32 +335,36 @@ const OrbitNode = forwardRef<HTMLDivElement, { spec: NodeSpec }>(function OrbitN
   );
 });
 
-function AnimatedHeadline({ sizeClass, mb = 'mb-6' }: { sizeClass: string; mb?: string }) {
+function AnimatedHeadline({ sizeClass, mb = 'mb-6', lang }: { sizeClass: string; mb?: string; lang: 'en' | 'ar' }) {
+  const isAr = lang === 'ar';
+  const line1 = isAr ? ['صانع', 'أنظمة'] : ['Systems', 'builder'];
+  const line2 = isAr ? ['يُنجز.'] : ['who', 'ships.'];
+
   return (
     <div style={{ position: 'relative', overflow: 'hidden' }}>
       <h1 className={`${sizeClass} font-bold tracking-tight leading-[1.05] ${mb}`}>
         <span className="block">
-          {(['Systems', 'builder'] as const).map((word, i) => (
+          {line1.map((word, i) => (
             <motion.span
               key={word}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.15, ease: 'easeOut' }}
-              className={`gradient-text-brand inline-block${i === 0 ? ' mr-[0.3em]' : ''}`}
+              className={`gradient-text-brand inline-block${i < line1.length - 1 ? ' me-[0.3em]' : ''}`}
             >
               {word}
             </motion.span>
           ))}
         </span>
         <span className="block">
-          {(['who', 'ships.'] as const).map((word, i) => (
+          {line2.map((word, i) => (
             <motion.span
               key={word}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: (i + 2) * 0.15, ease: 'easeOut' }}
               style={{ color: 'rgba(255,255,255,0.92)' }}
-              className={`inline-block${i === 0 ? ' mr-[0.3em]' : ''}`}
+              className={`inline-block${i < line2.length - 1 ? ' me-[0.3em]' : ''}`}
             >
               {word}
             </motion.span>
@@ -385,6 +392,10 @@ function AnimatedHeadline({ sizeClass, mb = 'mb-6' }: { sizeClass: string; mb?: 
 }
 
 export function HeroSection() {
+  const { lang } = useLanguage();
+  const t = lang === 'ar' ? ar : en;
+  const h = t.hero;
+
   // Desktop flow line refs
   const photoRef    = useRef<HTMLDivElement>(null);
   const pyramidsRef = useRef<HTMLDivElement>(null);
@@ -485,35 +496,44 @@ export function HeroSection() {
                     }}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Open to new opportunities
+                    {h.badge}
                   </span>
 
-                  <AnimatedHeadline sizeClass="text-4xl sm:text-5xl" mb="mb-4" />
+                  <AnimatedHeadline sizeClass="text-4xl sm:text-5xl" mb="mb-4" lang={lang} />
 
                   <p className="text-sm leading-relaxed max-w-sm" style={{ color: 'rgba(255,255,255,0.62)', marginBottom: '12px' }}>
-                    I&apos;m{' '}
-                    <strong style={{ color: 'rgba(255,255,255,0.88)', fontWeight: 600 }}>
-                      Abdelrahman Mohamed
-                    </strong>{' '}
-                    , ops architect &amp; product systems lead, 3+ years across MENA &amp; EMEA.
+                    {lang === 'ar' ? (
+                      <>
+                        <strong style={{ color: 'rgba(255,255,255,0.88)', fontWeight: 600 }}>{h.bioShortName}</strong>
+                        {', '}
+                        {h.bioShort}
+                      </>
+                    ) : (
+                      <>
+                        I&apos;m{' '}
+                        <strong style={{ color: 'rgba(255,255,255,0.88)', fontWeight: 600 }}>{h.bioShortName}</strong>
+                        {', '}{h.bioShort}
+                      </>
+                    )}
                   </p>
 
                   <p className="text-xs" style={{ color: 'rgba(255,255,255,0.38)', marginBottom: '24px' }}>
-                    Seeking{' '}
-                    <span style={{ color: '#7b9eff' }}>Product Operations</span>
-                    {' · '}
-                    <span style={{ color: '#7b9eff' }}>Esports Operations</span>
-                    {' · '}
-                    <span style={{ color: '#7b9eff' }}>Program Manager</span>
-                    {' '}roles
+                    {h.seeking}{' '}
+                    {h.seekingRoles.map((role, i) => (
+                      <span key={role}>
+                        <span style={{ color: '#7b9eff' }}>{role}</span>
+                        {i < h.seekingRoles.length - 1 && ' · '}
+                      </span>
+                    ))}
+                    {h.seekingRolesSuffix && <>{' '}{h.seekingRolesSuffix}</>}
                   </p>
 
                   <div className="flex flex-col w-full" style={{ gap: '12px' }}>
                     <Link href="/#products" className="btn-primary w-full justify-center">
-                      See my work <ArrowRight size={15} />
+                      {h.seeMyWork} <ArrowRight size={15} />
                     </Link>
                     <Link href="/#contact" className="btn-secondary w-full justify-center">
-                      <Mail size={14} /> Get in touch
+                      <Mail size={14} /> {h.getInTouch}
                     </Link>
                   </div>
                 </motion.div>
@@ -634,7 +654,7 @@ export function HeroSection() {
               }}
             >
               <ArrowLeftRight size={12} />
-              swipe to switch
+              {h.swipe}
             </button>
           </div>
         </div>
@@ -655,23 +675,31 @@ export function HeroSection() {
                 }}
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Open to new opportunities
+                {h.badge}
               </span>
             </motion.div>
 
-            <AnimatedHeadline sizeClass="text-5xl sm:text-6xl md:text-7xl lg:text-8xl" />
+            <AnimatedHeadline sizeClass="text-5xl sm:text-6xl md:text-7xl lg:text-8xl" lang={lang} />
 
             <motion.p
               {...fadeUp(0.2)}
               className="text-lg md:text-xl leading-relaxed mb-3 max-w-2xl"
               style={{ color: 'rgba(255,255,255,0.62)' }}
             >
-              I&apos;m{' '}
-              <strong style={{ color: 'rgba(255,255,255,0.88)', fontWeight: 600 }}>
-                Abdelrahman Mohamed Ahmed
-              </strong>{' '}
-              operations architect and product systems lead with 3+ years building
-              workflow platforms, esports ecosystems, and AI-assisted tools across MENA &amp; EMEA.
+              {lang === 'ar' ? (
+                <>
+                  <strong style={{ color: 'rgba(255,255,255,0.88)', fontWeight: 600 }}>{h.bioName}</strong>
+                  {' — '}
+                  {h.bio}
+                </>
+              ) : (
+                <>
+                  I&apos;m{' '}
+                  <strong style={{ color: 'rgba(255,255,255,0.88)', fontWeight: 600 }}>{h.bioName}</strong>
+                  {' '}
+                  {h.bio}
+                </>
+              )}
             </motion.p>
 
             <motion.p
@@ -679,13 +707,14 @@ export function HeroSection() {
               className="text-sm mb-10"
               style={{ color: 'rgba(255,255,255,0.38)' }}
             >
-              Seeking{' '}
-              <span style={{ color: '#7b9eff' }}>Product Operations</span>
-              {' · '}
-              <span style={{ color: '#7b9eff' }}>Esports Operations</span>
-              {' · '}
-              <span style={{ color: '#7b9eff' }}>Program Manager</span>
-              {' '}roles
+              {h.seeking}{' '}
+              {h.seekingRoles.map((role, i) => (
+                <span key={role}>
+                  <span style={{ color: '#7b9eff' }}>{role}</span>
+                  {i < h.seekingRoles.length - 1 && ' · '}
+                </span>
+              ))}
+              {h.seekingRolesSuffix && <>{' '}{h.seekingRolesSuffix}</>}
             </motion.p>
 
             <motion.div
@@ -693,10 +722,10 @@ export function HeroSection() {
               className="flex flex-wrap items-center justify-start gap-4"
             >
               <Link href="/#products" className="btn-primary">
-                See my work <ArrowRight size={17} />
+                {h.seeMyWork} <ArrowRight size={17} />
               </Link>
               <Link href="/#contact" className="btn-secondary">
-                <Mail size={16} /> Get in touch
+                <Mail size={16} /> {h.getInTouch}
               </Link>
             </motion.div>
           </div>
@@ -854,12 +883,12 @@ export function HeroSection() {
         >
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
             {[
-              { value: '1.8M+',   label: 'Social Media Reach' },
-              { value: '5,000+',  label: 'Tournament Participants' },
-              { value: '32',      label: 'Events Organized' },
-              { value: '230+',    label: 'Players Managed' },
-              { value: '25+',     label: 'Teams Coordinated' },
-              { value: '6',       label: 'Regional Qualifiers' },
+              { value: '1.8M+',   label: h.stats[0] },
+              { value: '5,000+',  label: h.stats[1] },
+              { value: '32',      label: h.stats[2] },
+              { value: '230+',    label: h.stats[3] },
+              { value: '25+',     label: h.stats[4] },
+              { value: '6',       label: h.stats[5] },
             ].map((s) => (
               <div key={s.label} className="text-center">
                 <p className="text-3xl font-bold gradient-text-brand mb-1">{s.value}</p>

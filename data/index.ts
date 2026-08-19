@@ -182,6 +182,12 @@ export const timeline: TimelineEntry[] = [
     accent: "#4f75ff",
   },
   {
+    year: "2025",
+    title: "National Phygital Operator, Saudi Arabia",
+    description: "Built the operational and public-facing infrastructure for Vicious Esports as the national phygital operator in Saudi Arabia. Delivered the SEF Arena hosting partnership with Al-Ittihad Al-Saudi, a national deployment framework, and full support systems for the Saudi Legends team, which qualified for the Games of the Future 2026 in Astana.",
+    accent: "#10b981",
+  },
+  {
     year: "2026",
     title: "Shipped Vicious OS + Founded Nexaro",
     description:

@@ -75,3 +75,20 @@ export interface Certification {
   status: string;
   color?: string;
 }
+
+export type AchievementImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
+export type Achievement = {
+  id: string;
+  title: string;
+  event: string;
+  placement: string;
+  date: string;
+  roster?: string[];
+  description: string;
+  images: AchievementImage[];
+};

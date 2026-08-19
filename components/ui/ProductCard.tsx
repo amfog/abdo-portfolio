@@ -4,13 +4,24 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import type { Product } from '@/types';
+import type { en } from '@/data/translations/en';
+
+type ProductT = typeof en['products'];
 
 interface ProductCardProps {
   product: Product;
+  lang?: 'en' | 'ar';
+  productT?: ProductT;
 }
  
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, productT }: ProductCardProps) {
   const [expanded, setExpanded] = useState(false);
+  const ui = productT ?? {
+    live: 'Live', featured: '★ Featured', availableAsService: 'Available as a service',
+    seePricing: 'See pricing ↓', hidePricing: 'Hide pricing ↑', pricing: 'Pricing',
+    setupFee: 'Setup fee', monthlyRetainer: 'Monthly retainer', turnaroundTime: 'Turnaround time',
+    inquire: 'Inquire about this', viewLiveEcosystem: 'View live ecosystem', viewDetails: 'View details',
+  };
   const displayTech = product.tags ?? product.tech ?? [];
   const displaySubtitle = product.tagline ?? product.subtitle;
   const hasExternalLink = product.href && product.href.startsWith('http');
@@ -38,7 +49,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
           {product.status === 'live' && (
             <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              ● Live
+              ● {ui.live}
             </span>
           )}
           {product.sellable && (
@@ -46,13 +57,13 @@ export default function ProductCard({ product }: ProductCardProps) {
               className="text-xs font-medium px-2.5 py-1 rounded-full border"
               style={{ background: 'rgba(245,158,11,0.15)', color: '#fbbf24', borderColor: 'rgba(245,158,11,0.25)' }}
             >
-              Available as a service
+              {ui.availableAsService}
             </span>
           )}
         </div>
         {product.featured && (
           <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-[#7b5cf6]/10 text-[#7b5cf6] border border-[#7b5cf6]/20">
-            ★ Featured
+            {ui.featured}
           </span>
         )}
       </div>
@@ -84,23 +95,23 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="mb-5 p-4 rounded-xl border"
           style={{ background: 'rgba(245,158,11,0.06)', borderColor: 'rgba(245,158,11,0.2)' }}
         >
-          <h4 className="text-sm font-semibold mb-3" style={{ color: '#fbbf24' }}>Pricing</h4>
+          <h4 className="text-sm font-semibold mb-3" style={{ color: '#fbbf24' }}>{ui.pricing}</h4>
           <div className="space-y-1.5 text-sm mb-4">
             {product.pricingSetup && (
               <div className="flex justify-between text-white/70">
-                <span>Setup fee</span>
+                <span>{ui.setupFee}</span>
                 <span className="text-white">{product.pricingSetup}</span>
               </div>
             )}
             {product.pricingRetainer && (
               <div className="flex justify-between text-white/70">
-                <span>Monthly retainer</span>
+                <span>{ui.monthlyRetainer}</span>
                 <span className="text-white">{product.pricingRetainer}</span>
               </div>
             )}
             {product.setupTime && (
               <div className="flex justify-between text-white/70">
-                <span>Turnaround time</span>
+                <span>{ui.turnaroundTime}</span>
                 <span className="text-white">{product.setupTime}</span>
               </div>
             )}
@@ -110,7 +121,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg border transition-all duration-200 hover:bg-[rgba(245,158,11,0.15)]"
             style={{ color: '#fbbf24', borderColor: 'rgba(245,158,11,0.3)' }}
           >
-            Inquire about this
+            {ui.inquire}
           </Link>
         </div>
       )}
@@ -123,7 +134,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-[#7b5cf6] hover:text-white transition-colors duration-200 group/link"
           >
-            View live ecosystem
+            {ui.viewLiveEcosystem}
             <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
@@ -133,7 +144,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             href={`/products/${product.slug}`}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-[#4f75ff] hover:text-white transition-colors duration-200 group/link"
           >
-            View details
+            {ui.viewDetails}
             <svg className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
@@ -146,7 +157,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             className="text-sm ml-auto transition-colors duration-200"
             style={{ color: expanded ? '#fbbf24' : 'rgba(251,191,36,0.6)' }}
           >
-            {expanded ? 'Hide pricing ↑' : 'See pricing ↓'}
+            {expanded ? ui.hidePricing : ui.seePricing}
           </button>
         )}
       </div>

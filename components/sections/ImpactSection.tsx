@@ -3,8 +3,20 @@
 import { motion } from 'framer-motion';
 import StatCard from '@/components/ui/StatCard';
 import { stats } from '@/data';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { en } from '@/data/translations/en';
+import { ar } from '@/data/translations/ar';
 
 export function ImpactSection() {
+  const { lang } = useLanguage();
+  const t = lang === 'ar' ? ar : en;
+  const imp = t.impact;
+
+  const translatedStats = stats.map((stat, i) => ({
+    ...stat,
+    label: imp.statLabels[i] ?? stat.label,
+  }));
+
   return (
     <section id="impact" className="section-padding relative">
       <div
@@ -24,18 +36,18 @@ export function ImpactSection() {
           className="text-center mb-16"
         >
           <span className="section-label" style={{ display: 'inline-block' }}>
-            Impact Dashboard
+            {imp.sectionLabel}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Numbers that matter.
+            {imp.heading}
           </h2>
           <p className="max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.50)' }}>
-            Real outcomes from real systems, measured, tracked, and scaled.
+            {imp.subtitle}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
-          {stats.map((stat, i) => (
+          {translatedStats.map((stat, i) => (
             <StatCard key={stat.label} stat={stat} index={i} />
           ))}
         </div>
