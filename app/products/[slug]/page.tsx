@@ -70,7 +70,22 @@ export default async function ProductPage({ params }: Props) {
           {(product.subtitle ?? product.tagline) && (
             <p className="text-white/50 text-xl mb-6">{product.subtitle ?? product.tagline}</p>
           )}
-          <p className="text-white/65 text-lg leading-relaxed">{product.description}</p>
+          <p className="text-white/65 text-lg leading-relaxed whitespace-pre-line">{product.description}</p>
+
+          {product.liveUrl && (
+            <a
+              href={product.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-[#7b5cf6] hover:text-white transition-colors duration-200 group/live"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              {product.liveUrl.replace(/^https?:\/\//, '')}
+              <svg className="w-4 h-4 group-hover/live:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          )}
         </div>
 
         {/* KPI highlight */}
@@ -78,6 +93,55 @@ export default async function ProductPage({ params }: Props) {
           <div className="text-5xl font-bold text-[#4f75ff] mb-2">{product.kpi}</div>
           <div className="text-white/50">{product.kpiLabel}</div>
         </div>
+
+        {product.metrics && product.metrics.length > 0 && (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+            {product.metrics.map((m) => (
+              <div key={m.label} className="glass rounded-xl p-4 text-center">
+                <div className="text-2xl font-bold mb-1 text-[#4f75ff]">{m.value}</div>
+                <div className="text-white/40 text-xs">{m.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {product.keyProblems && product.keyProblems.length > 0 && (
+          <div className="mb-10">
+            <h2 className="text-white font-semibold text-lg mb-1">Three problems worth describing</h2>
+            <p className="text-white/45 text-sm mb-4">
+              These are the ones that were not obvious from a specification, and they are the ones I would talk about in an interview.
+            </p>
+            <div className="space-y-4">
+              {product.keyProblems.map((p) => (
+                <div key={p.title} className="glass rounded-2xl p-6">
+                  <h3 className="text-white font-semibold mb-2">{p.title}</h3>
+                  <p className="text-white/65 text-sm leading-relaxed">{p.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {product.contributions && product.contributions.length > 0 && (
+          <div className="mb-10">
+            <h2 className="text-white font-semibold text-lg mb-4">What I did</h2>
+            <div className="space-y-4">
+              {product.contributions.map((c) => (
+                <div key={c.title} className="glass rounded-2xl p-6">
+                  <h3 className="text-white font-semibold mb-2">{c.title}</h3>
+                  <p className="text-white/65 text-sm leading-relaxed">{c.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {product.retro && (
+          <div className="glass rounded-2xl p-6 mb-10">
+            <h2 className="text-white font-semibold text-lg mb-3">What I would do differently</h2>
+            <p className="text-white/65 text-sm leading-relaxed">{product.retro}</p>
+          </div>
+        )}
 
         {(product.challenge ?? product.solution ?? product.outcome) && (
           <div className="space-y-4 mb-8">
@@ -132,7 +196,7 @@ export default async function ProductPage({ params }: Props) {
           </div>
         )}
 
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className={`grid gap-6 mb-8 ${product.problems && product.problems.length > 0 ? 'md:grid-cols-2' : ''}`}>
           {product.problems && product.problems.length > 0 && (
             <div className="glass rounded-2xl p-6">
               <h2 className="text-white font-semibold mb-4">Problems Solved</h2>
@@ -149,7 +213,7 @@ export default async function ProductPage({ params }: Props) {
 
           {(product.tech ?? product.techStack) && (
             <div className="glass rounded-2xl p-6">
-              <h2 className="text-white font-semibold mb-4">Tools & Tech</h2>
+              <h2 className="text-white font-semibold mb-4">Tools &amp; Tech</h2>
               <div className="flex flex-wrap gap-2">
                 {(product.tech ?? product.techStack ?? []).map((t) => (
                   <span key={t} className="text-sm px-3 py-1.5 rounded-xl bg-[#4f75ff]/10 text-[#4f75ff] border border-[#4f75ff]/20">
@@ -161,13 +225,23 @@ export default async function ProductPage({ params }: Props) {
           )}
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           <Link
             href="/#contact"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-[#4f75ff] text-white hover:bg-[#4f75ff]/90 transition-all duration-200"
           >
             Discuss this project
           </Link>
+          {product.liveUrl && (
+            <a
+              href={product.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold glass hover:border-white/20 text-white/70 hover:text-white transition-all duration-200"
+            >
+              Visit the live site
+            </a>
+          )}
           <Link
             href="/"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold glass hover:border-white/20 text-white/70 hover:text-white transition-all duration-200"

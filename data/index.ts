@@ -37,32 +37,78 @@ export const products: Product[] = [
     id: "pyramids-queue",
     slug: "pyramids-queue",
     title: "Pyramids Queue",
-    badge: "Community Founder",
-    subtitle: "MENA Esports Community Hub",
+    badge: "Systems Build",
+    status: "live",
+    subtitle:
+      "Designed and built four production systems for a 500-player esports circuit: a Discord bot, a Flutter staff platform, a Next.js public site, and the Postgres schema underneath all three.",
     description:
-      "Founded the community hub for MENA Wild Rift ecosystem. Partnered with Riot Games. Scaled to 4,961+ players across 20+ events with 1.8M+ total reach and 88K+ Discord watch hours.",
-    kpi: "1.8M+",
-    kpiLabel: "Total Reach",
-    problems: [
-      "Community fragmentation",
-      "Lack of regional tournaments",
-      "Player discovery difficulty",
-      "Scattered event management",
-    ],
-    tech: ["Discord", "Riot Games", "Tournament Ops", "Community", "Event Ops"],
+      "Pyramids Queue runs the MENA Wild Rift circuit that feeds Rift Legends, the EMEA league. 536 players, 195 matches, 4,394 hours watched in a single edition. Coordinated by one person across a spreadsheet, a Discord server, and a group chat.\n\nI built the stack that replaced that, and I run the tournament on it.",
+    kpi: "4",
+    kpiLabel: "production systems on one Postgres database",
     featured: true,
-    href: "https://project-c3kqs.vercel.app",
-    challenge:
-      "MENA Wild Rift players had no central hub for finding teams, scrims, or tournaments. Community growth was stunted by fragmented Discord servers.",
-    solution:
-      "Built Pyramids Queue as the single source of truth. Implemented automated role management, tournament registration bots, and daily scrim coordination.",
-    outcome:
-      "Grew to 4,000+ members. Became the go-to partner for Riot Games in the region. Successfully ran 7 regional qualifiers.",
-    techStack: ["Discord API", "Python", "Community Strategy", "Riot Games API"],
+    liveUrl: "https://pyramidsqueue.com",
+    metrics: [
+      { value: "536", label: "Players, one edition" },
+      { value: "195+", label: "Matches operated" },
+      { value: "147K", label: "Live views" },
+      { value: "4,394", label: "Hours watched" },
+    ],
+    keyProblems: [
+      {
+        title: "Wild Rift scoreboards print no champion names",
+        body:
+          "Only a circular portrait. Everything about extracting them is image recognition rather than text, so the prompt instructs the model to return blank when unsure. Returning nothing is correct behaviour; returning a plausible wrong champion is the failure.",
+      },
+      {
+        title: "Copy-pasting a Discord message destroys the data in it",
+        body:
+          "A mention renders as @name in the clipboard, and the numeric ID is gone. Registrations were losing every player ID silently, so roles were never granted and nobody could see why. Fixed by parsing the real mention and adding a way to pass the original message link instead of its text.",
+      },
+      {
+        title: "The same substring bug in two alphabets",
+        body:
+          "A referee helper matched keywords to suggest rulebook answers. includes('sub') matched \"how do we submit the result\" and answered a results question with roster rules. Fixing it with word boundaries then exposed the Arabic version, which is worse: \\b is defined on ASCII characters so it never matches at the edge of an Arabic word, and Arabic joins the definite article directly to the noun, so النت (the internet) is a prefix of النتيجة (the result). Both found by writing the test cases out, not by reading the code.",
+      },
+    ],
+    contributions: [
+      {
+        title: "Designed the data model first",
+        body:
+          "Four systems share one Postgres database. The bot writes, the staff platform verifies, the public site reads. The alternative, each system with its own store and a sync between them, is where the original problem came from, so it was ruled out before anything was written.",
+      },
+      {
+        title: "Made row level security the privacy boundary, not the application",
+        body:
+          "Seven circuits on one deployment, each seeing only its own data, enforced in database policies. The public site reads nine public_* views rather than any table, so Discord handles, staff notes and unverified statistics cannot reach a visitor by construction rather than by remembering to filter.",
+      },
+      {
+        title: "Built the verification gate",
+        body:
+          "Model-extracted player statistics land with verified_at empty and the public view filters them out until a person approves them in the staff app. The filter is in the view, so a future page cannot bypass it.",
+      },
+      {
+        title: "Wrote the Discord bot",
+        body:
+          "Ten commands, TypeScript. Registers a team from a pasted roster, reads a Toornament bracket screenshot into a bracket, creates a private channel per match with the right roles, DMs every player a link, and reads end-of-game scoreboards into statistics.",
+      },
+    ],
+    retro:
+      "The public site and the season page were built as two implementations of the same standings table, three weeks apart. They drifted, and one of them never got the mobile work, so it forced a horizontal scrollbar on every phone. Merging them into one component was ninety lines deleted and the bug fixed at the same time. The lesson is not \"reuse components\", which everybody already knows. It is that the second implementation existed because I forgot the first one, and the fix was a search before a build.",
+    techStack: [
+      "TypeScript",
+      "Node",
+      "discord.js",
+      "Next.js 15",
+      "React 19",
+      "Tailwind",
+      "Flutter",
+      "Riverpod",
+      "Supabase",
+      "Postgres with row level security",
+      "Gemini for image extraction",
+      "Vercel",
+    ],
     sellable: false,
-    pricingSetup: "N/A",
-    pricingRetainer: "N/A",
-    setupTime: "N/A",
   },
 ];
 

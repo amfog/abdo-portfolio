@@ -26,6 +26,12 @@ export interface Product {
   pricingSetup?: string;
   pricingRetainer?: string;
   setupTime?: string;
+  // deep detail (engineering write-up)
+  liveUrl?: string;
+  metrics?: { value: string; label: string }[];
+  keyProblems?: { title: string; body: string }[];
+  contributions?: { title: string; body: string }[];
+  retro?: string;
 }
 
 export interface CaseStudy {
