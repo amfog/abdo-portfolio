@@ -1,3 +1,5 @@
+import LegalLink from '@/components/layout/LegalLink';
+
 export default function Footer() {
   return (
     <footer className="border-t border-white/8 bg-[#0d0d20]">
@@ -78,6 +80,7 @@ export default function Footer() {
               Nexaro Tech
             </a>
           </p>
+          <LegalLink />
           <p className="text-white/20 text-xs">Systems builder who ships.</p>
         </div>
       </div>
