@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const stats = [
-  { value: '331', label: 'Matches', note: 'four stages' },
+  { value: '335', label: 'Matches', note: 'four stages' },
   { value: '364', label: 'Players', note: '24 countries' },
   { value: '3,660', label: 'Discord members', note: '66% new member retention' },
   { value: 'Up to 1M', label: 'Stream and clip views', note: 'owner reported' },
@@ -45,7 +45,7 @@ export function FeaturedCaseStudy() {
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
               <h2 className="text-3xl font-bold leading-tight text-white md:text-4xl">
-                Six weeks, four stages, 331 matches.{' '}
+                Six weeks, four stages, 335 matches.{' '}
                 <span className="gradient-text-brand">One system ran all of it.</span>
               </h2>
               <p className="mt-5 leading-relaxed text-white/60">

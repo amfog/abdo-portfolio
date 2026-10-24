@@ -127,12 +127,12 @@ export const caseStudies: CaseStudy[] = [
     slug: "pyramids-cup-8",
     title: "Pyramids Cup 8",
     tag: "Esports Operations + Systems",
-    tagline: "Six weeks, four stages, 331 matches, run by a staff of five on one system",
+    tagline: "Six weeks, four stages, 335 matches, run by a staff of five on one system",
     problem:
       "Seven editions ran on Discord, spreadsheets and manual posting. Every result was typed into five places, and every match night depended on somebody remembering seventeen steps.",
     outcome:
-      "331 matches and 706 games across four stages, 364 players from 24 countries, every result checked by a person. JSK Esports won the Grand Final 3-2 against SBO3A; both go on to the Rift Legends Regional Groups.",
-    stat1: { value: "331", label: "Matches, four stages" },
+      "335 matches and 706 games across four stages, 364 players from 24 countries, every result checked by a person. JSK Esports won the Grand Final 3-2 against SBO3A; both go on to the Rift Legends Regional Groups.",
+    stat1: { value: "335", label: "Matches, four stages" },
     stat2: { value: "364", label: "Players, 24 countries" },
     status: "Completed",
     link: "/case-studies/pyramids-cup-8",
@@ -142,7 +142,7 @@ export const caseStudies: CaseStudy[] = [
     liveUrl: "https://pyramidsqueue.com",
     heroImage: { src: "/images/pc8/final-results.webp", alt: "Pyramids Cup 8 final results", caption: "Final results: JSK Esports won the Grand Final 3-2 against SBO3A." },
     stats: [
-      { value: "331", label: "Matches", note: "706 games, four stages" },
+      { value: "335", label: "Matches", note: "706 games, four stages" },
       { value: "364", label: "Players", note: "436 roster places" },
       { value: "60", label: "Team entries", note: "54 distinct teams" },
       { value: "24", label: "Countries", note: "14 of 15 MENA" },
@@ -163,7 +163,7 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: "The season",
         bullets: [
-          "Qualifier 1 (8 to 18 Sep): 29 entries, 10 Swiss rounds, 130 matches. SBO3A went 10-0.",
+          "Qualifier 1 (8 to 18 Sep): 29 entries, 10 Swiss rounds, 134 matches. SBO3A went 10-0.",
           "Qualifier 2 (22 Sep to 2 Oct): 33 entries, 167 matches. Bigger than the first, with no new campaign.",
           "League Stage (7 to 16 Oct): 12 teams, two groups, Bo3 Fearless, 30 series.",
           "Playoffs (22 and 23 Oct): the teams asked for Bo5 semi-finals and all four agreed in writing.",
