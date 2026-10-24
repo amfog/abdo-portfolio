@@ -156,7 +156,7 @@ function NodeBodyContent({ body, accent, compact = false }: { body: NodeBodyType
   if (body === 'pyramids') {
     return (
       <div style={{ display: 'flex', gap: compact ? 3 : 4, flexWrap: 'wrap' }}>
-        {['Discord', 'Esports', 'Riot Partnership'].map((t) => (
+        {['Discord', 'Esports', 'Rift Legends path'].map((t) => (
           <span
             key={t}
             style={{

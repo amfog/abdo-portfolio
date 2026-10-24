@@ -264,7 +264,7 @@ export const caseStudies: CaseStudy[] = [
     problem:
       "The MENA region had no path to international Wild Rift competition. No qualifiers, no recognition, no infrastructure.",
     outcome:
-      "8 editions delivered. 5,397+ players. Riot Games partnership secured. MENA now recognized by EMEA.",
+      "8 editions delivered. 5,397+ players. The top teams go on to Rift Legends, the EMEA circuit.",
     stat1: { value: "3.1M+", label: "Total Reach" },
     stat2: { value: "8", label: "Editions Delivered" },
     status: "Active",
@@ -323,7 +323,7 @@ export const timeline: TimelineEntry[] = [
     year: "2019",
     title: "Professional Wild Rift Player & Analyst",
     description:
-      "Competed professionally in League of Legends: Wild Rift across MENA. Active streamer and in-game analyst. Liquipedia profile: liquipedia.net/wildrift/F0G",
+      "Competed professionally in League of Legends: Wild Rift across MENA. Active streamer and in-game analyst, and a content creator partner in Riot Games' creator program. Liquipedia profile: liquipedia.net/wildrift/F0G",
     accent: "#06b6d4",
   },
   {
@@ -349,9 +349,9 @@ export const timeline: TimelineEntry[] = [
   },
   {
     year: "2024",
-    title: "Joined Vicious Esports + Riot Games Partnership",
+    title: "Joined Vicious Esports",
     description:
-      "Joined as Operations & Product Systems Manager. Co-created Summer Camp 2024 with 1,800 participants across 53 teams and 5 simultaneous tournament formats. Secured partnership with Riot MENA, The Purge, and Wild Circuit.",
+      "Joined as Operations & Product Systems Manager. Co-created Summer Camp 2024 with 1,800 participants across 53 teams and 5 simultaneous tournament formats. Worked with The Purge and the Wild Circuit.",
     accent: "#4f75ff",
   },
   {
