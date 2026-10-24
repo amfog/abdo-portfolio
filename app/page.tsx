@@ -1,4 +1,5 @@
 import { HeroSection } from '@/components/sections/HeroSection';
+import { FeaturedCaseStudy } from '@/components/sections/FeaturedCaseStudy';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { ImpactSection } from '@/components/sections/ImpactSection';
 import ProductsSection from '@/components/sections/ProductsSection';
@@ -10,6 +11,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#0d0d20]">
       <HeroSection />
+      <FeaturedCaseStudy />
       <AboutSection />
       <ImpactSection />
       <ProductsSection />

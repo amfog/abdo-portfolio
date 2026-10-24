@@ -44,8 +44,18 @@ export interface CaseStudy {
   outcome: string;
   stat1: { value: string; label: string };
   stat2: { value: string; label: string };
-  status: 'Active' | 'In Development';
+  status: 'Active' | 'In Development' | 'Completed';
   link: string;
+  // Long-form case study (25 Oct 2026). All optional: the short cards above
+  // still work without them.
+  role?: string;
+  dates?: string;
+  partners?: string;
+  liveUrl?: string;
+  heroImage?: { src: string; alt: string; caption?: string };
+  stats?: { value: string; label: string; note?: string }[];
+  sections?: { heading: string; body?: string; bullets?: string[] }[];
+  images?: { src: string; alt: string; caption?: string }[];
 }
 
 export interface TimelineEntry {

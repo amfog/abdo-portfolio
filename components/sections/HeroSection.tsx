@@ -883,12 +883,12 @@ export function HeroSection() {
         >
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
             {[
-              { value: '1.8M+',   label: h.stats[0] },
-              { value: '5,000+',  label: h.stats[1] },
+              { value: '3.1M+',   label: h.stats[0] },
+              { value: '5,397+',  label: h.stats[1] },
               { value: '32',      label: h.stats[2] },
               { value: '230+',    label: h.stats[3] },
               { value: '25+',     label: h.stats[4] },
-              { value: '6',       label: h.stats[5] },
+              { value: '8',       label: h.stats[5] },
             ].map((s) => (
               <div key={s.label} className="text-center">
                 <p className="text-3xl font-bold gradient-text-brand mb-1">{s.value}</p>

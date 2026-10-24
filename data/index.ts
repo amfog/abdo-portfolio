@@ -123,6 +123,139 @@ export const pyramidEditions: Edition[] = [
 
 export const caseStudies: CaseStudy[] = [
   {
+    id: "pyramids-cup-8",
+    slug: "pyramids-cup-8",
+    title: "Pyramids Cup 8",
+    tag: "Esports Operations + Systems",
+    tagline: "Six weeks, four stages, 331 matches, run by a staff of five on one system",
+    problem:
+      "Seven editions ran on Discord, spreadsheets and manual posting. Every result was typed into five places, and every match night depended on somebody remembering seventeen steps.",
+    outcome:
+      "331 matches and 706 games across four stages, 364 players from 24 countries, every result checked by a person. JSK Esports won the Grand Final 3-2 against SBO3A; both go on to the Rift Legends Regional Groups.",
+    stat1: { value: "331", label: "Matches, four stages" },
+    stat2: { value: "364", label: "Players, 24 countries" },
+    status: "Completed",
+    link: "/case-studies/pyramids-cup-8",
+    role: "Founder and operations lead, one of a staff of five. System designed and built with Nexaro.",
+    dates: "8 September to 23 October 2026",
+    partners: "Pyramids Queue and The Vicious Esports, powered by Nexaro. Supported by the Rift Legends Program by The Purge.",
+    liveUrl: "https://pyramidsqueue.com",
+    heroImage: { src: "/images/pc8/final-results.webp", alt: "Pyramids Cup 8 final results", caption: "Final results: JSK Esports won the Grand Final 3-2 against SBO3A." },
+    stats: [
+      { value: "331", label: "Matches", note: "706 games, four stages" },
+      { value: "364", label: "Players", note: "436 roster places" },
+      { value: "60", label: "Team entries", note: "54 distinct teams" },
+      { value: "24", label: "Countries", note: "14 of 15 MENA" },
+      { value: "3,660", label: "Discord members", note: "66.3% new member retention" },
+      { value: "Up to 1M", label: "Stream and clip views", note: "200K stream, 800K clip (owner reported)" },
+      { value: "580", label: "Grand Final peak viewers", note: "three streams (owner reported)" },
+      { value: "5", label: "Staff", note: "Fog, mer, evil, itach, ananas" },
+    ],
+    sections: [
+      {
+        heading: "The context",
+        body: "Pyramids Cup is the MENA local circuit inside the Wild Rift Rift Legends ecosystem. Seven editions came before this one, run on Discord, spreadsheets and manual posting.",
+      },
+      {
+        heading: "The goal",
+        body: "A season that runs on a system: register, play, verify and publish once, in Arabic and English, with a public record any captain can check without asking an admin.",
+      },
+      {
+        heading: "The season",
+        bullets: [
+          "Qualifier 1 (8 to 18 Sep): 29 entries, 10 Swiss rounds, 130 matches. SBO3A went 10-0.",
+          "Qualifier 2 (22 Sep to 2 Oct): 33 entries, 167 matches. Bigger than the first, with no new campaign.",
+          "League Stage (7 to 16 Oct): 12 teams, two groups, Bo3 Fearless, 30 series.",
+          "Playoffs (22 and 23 Oct): the teams asked for Bo5 semi-finals and all four agreed in writing.",
+          "Semi-finals: SBO3A 3-0 4Cats1Dog, JSK Esports 3-1 coming for you. Third place: coming for you 2-0 4Cats1Dog.",
+          "Grand Final: JSK Esports 3-2 SBO3A, after SBO3A had won sixteen series in a row.",
+          "Rift Legends: JSK Esports and SBO3A to the Regional Groups, coming for you and 4Cats1Dog to the Last Chance Qualifier.",
+        ],
+      },
+      {
+        heading: "The challenge",
+        bullets: [
+          "Sequencing: round two cannot be paired until every round one result is in.",
+          "Concurrency: thirteen matches per round in two waves, 20:00 and 21:30 Cairo.",
+          "Evidence: every game's scoreboard captured while players are still in the room.",
+          "Hard limits: Discord caps a server at 500 channels; each round used about seventeen.",
+        ],
+      },
+      {
+        heading: "What I built, with Nexaro",
+        bullets: [
+          "Nexaro AI, the tournament bot: registration, match channels, ready checks, team sheets, drafts, results and scoreboards.",
+          "Teams OS, the back office: rosters per stage, results review, incidents, champion review, media hub, staff roles.",
+          "pyramidsqueue.com: public pages in Arabic and English for standings, players, meta, bracket, rules, region and creators.",
+          "One Supabase database: every number written once and read everywhere.",
+        ],
+      },
+      {
+        heading: "How I kept it fair",
+        body: "Automation removes typing, never judgement. Results, tiebreaks, warnings, clips and eligibility are decided by a person. 96.4% of 3,044 player statistic rows matched a registered player automatically; the rest waited for staff.",
+      },
+      {
+        heading: "What went wrong, and what changed",
+        bullets: [
+          "Discord's 500 channel ceiling: the bracket command now refuses a batch that will not fit and reports free channels.",
+          "A team lookup that failed silently: now stage-aware, with a pre-flight check that fails loudly before the night.",
+          "A bye with no channel: byes now get a channel and a bilingual brief.",
+        ],
+      },
+      {
+        heading: "What I learned",
+        body: "Fail loudly: every incident began as a quiet fallback. Count things one way and say which way. And let the players decide what affects them: the Bo5 vote cost one evening and earned the trust of all four teams.",
+      },
+    ],
+    images: [
+      { src: "/images/pc8/finals-boosted.webp", alt: "The Grand Final on a creator stream", caption: "The Grand Final live on a creator stream: 580 peak viewers across three streams (owner reported)." },
+      { src: "/images/pc8/league.webp", alt: "League Stage standings on pyramidsqueue.com", caption: "League Stage standings, published from the results staff approved." },
+      { src: "/images/pc8/playoffs.webp", alt: "Playoffs bracket", caption: "The Playoffs bracket on the public site." },
+      { src: "/images/pc8/dc_members.webp", alt: "Discord members over the season", caption: "Discord members over the season (Discord Server Insights)." },
+    ],
+  },
+  {
+    id: "pyramids-q-player-platform",
+    slug: "pyramids-q-player-platform",
+    title: "Pyramids Q Player Platform",
+    tag: "Side Project",
+    tagline: "Profiles, inhouses and fantasy: keeping players playing between cups",
+    problem:
+      "A cup lasts six weeks. Between cups the community went quiet, new teams had no way to find players, and good players had no record they could show.",
+    outcome:
+      "72 verified player profiles with shareable cards, and Pyramids Q Inhouses Season 1 with rated, balanced 5v5 lobbies run from Discord. Fantasy is next.",
+    stat1: { value: "72", label: "Verified profiles" },
+    stat2: { value: "Season 1", label: "Pyramids Q Inhouses" },
+    status: "Active",
+    link: "/case-studies/pyramids-q-player-platform",
+    role: "Product owner. Built with Nexaro. Separate from Pyramids Cup 8.",
+    partners: "Inhouse prizes by TUN and DUSK.",
+    liveUrl: "https://pyramidsqueue.com/profiles",
+    heroImage: { src: "/images/pc8/profiles_top5.webp", alt: "Top five player profiles", caption: "The top five player profiles, ranked by profile score." },
+    sections: [
+      {
+        heading: "Why",
+        body: "The platform keeps the community active the rest of the year: it grows the player base, helps new teams form, and gives competitive players a record they can show.",
+      },
+      {
+        heading: "Player profiles (live)",
+        body: "Submitted in Discord and checked by staff. Peak and Legendary rank, seasons reached, verified cup history, current form, a profile score, compare, best per lane, downloadable cards (card, story, post) and team cards.",
+      },
+      {
+        heading: "Pyramids Q Inhouses (live, Season 1)",
+        body: "Queue in Discord, a five-minute ready check, teams balanced by rating and chosen lanes, private lobby threads and voice, both sides report, every player enters their line, staff approve before ratings move, no-show penalties, a High-Level queue and player reports.",
+      },
+      {
+        heading: "Pyramids Q Fantasy (in development)",
+        body: "Pick a team of cup and inhouse players and score on their real, approved results.",
+      },
+    ],
+    images: [
+      { src: "/images/pc8/card_basil.webp", alt: "A downloadable player card", caption: "A player card, ready to share." },
+      { src: "/images/pc8/inhouse_open.webp", alt: "An inhouse lobby in Discord", caption: "An inhouse lobby opening in Discord." },
+    ],
+  },
+  {
     id: "pyramids-cup",
     slug: "pyramids-cup",
     title: "Pyramids Cup",
@@ -131,9 +264,9 @@ export const caseStudies: CaseStudy[] = [
     problem:
       "The MENA region had no path to international Wild Rift competition. No qualifiers, no recognition, no infrastructure.",
     outcome:
-      "6 editions delivered. 5,000+ participants. Riot Games partnership secured. MENA now recognized by EMEA.",
-    stat1: { value: "1.8M+", label: "Total Reach" },
-    stat2: { value: "6", label: "Editions Delivered" },
+      "8 editions delivered. 5,397+ players. Riot Games partnership secured. MENA now recognized by EMEA.",
+    stat1: { value: "3.1M+", label: "Total Reach" },
+    stat2: { value: "8", label: "Editions Delivered" },
     status: "Active",
     link: "/case-studies/pyramids-cup",
   },
@@ -170,12 +303,12 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 export const stats: Stat[] = [
-  { label: "Social Media Reach", displayValue: "1.8M+", numericEnd: 1800000, suffix: "+", icon: "globe" },
-  { label: "Tournament Participants", displayValue: "5,000+", numericEnd: 5000, suffix: "+", icon: "users" },
+  { label: "Social Media Reach", displayValue: "3.1M+", numericEnd: 3100000, suffix: "+", icon: "globe" },
+  { label: "Tournament Participants", displayValue: "5,397+", numericEnd: 5397, suffix: "+", icon: "users" },
   { label: "Events Organized", displayValue: "32", numericEnd: 32, suffix: "", icon: "trophy" },
   { label: "Players Managed", displayValue: "230+", numericEnd: 230, suffix: "+", icon: "zap" },
   { label: "Teams Coordinated", displayValue: "25+", numericEnd: 25, suffix: "+", icon: "layers" },
-  { label: "Editions Delivered", displayValue: "6", numericEnd: 6, suffix: "", icon: "trophy" },
+  { label: "Editions Delivered", displayValue: "8", numericEnd: 8, suffix: "", icon: "trophy" },
 ];
 
 export const certifications: Certification[] = [

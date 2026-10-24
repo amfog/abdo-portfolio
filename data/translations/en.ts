@@ -49,7 +49,7 @@ export const en = {
     heading: 'I build systems that help',
     headingHighlight: 'teams scale faster.',
     bio1: 'I am Abdelrahman Mohamed Ahmed, founder of Nexaro, Project Manager at Vicious Esports, and one of the people who helped put MENA on the Wild Rift esports map.',
-    bio2: 'In 2023, the MENA region had no voice in Wild Rift esports. No regional qualifiers. No path to international competition. Just a passionate community with potential. Together with that community, we built Pyramids Queue and launched the first Pyramids Cup with 57 teams. Three years later: 6 editions delivered, 5,000+ participants, 1.8M+ social media reach, and an official Riot Games partnership. We put MENA on the map.',
+    bio2: 'In 2023, the MENA region had no voice in Wild Rift esports. No regional qualifiers. No path to international competition. Just a passionate community with potential. Together with that community, we built Pyramids Queue and launched the first Pyramids Cup with 57 teams. Three years later: 8 editions delivered, 5,397+ players, 3.1M+ reach, and an official Riot Games partnership. We put MENA on the map.',
     bio3: 'In 2024 I joined Vicious Esports as Project Manager, shipped Vicious OS managing 230+ players across multiple titles, and coordinated 25+ department teams. Before that I worked with The Purge Tournament, a French company serving 3M+ players globally as the gold standard for competitive event management.',
     bio4: 'Now I am building Nexaro full time, a 7-product AI-powered operations ecosystem.',
     seekingText: 'I am currently looking for a Product Operations, Esports Operations, or Program Manager role where I can own the operational infrastructure of something ambitious.',
@@ -126,7 +126,7 @@ export const en = {
         tag: 'Esports Operations',
         tagline: "Built MENA's first Wild Rift regional qualifier from scratch",
         problem: 'The MENA region had no path to international Wild Rift competition. No qualifiers, no recognition, no infrastructure.',
-        outcome: '6 editions delivered. 5,000+ participants. Riot Games partnership secured. MENA now recognized by EMEA.',
+        outcome: '8 editions delivered. 5,397+ players. Riot Games partnership secured. MENA now recognized by EMEA.',
       },
       'vicious-os': {
         tag: 'Product Systems',

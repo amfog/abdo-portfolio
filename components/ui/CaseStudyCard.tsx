@@ -17,7 +17,7 @@ const ACCENTS = ['#4f75ff', '#7b5cf6', '#10b981'];
 
 export default function CaseStudyCard({ caseStudy, index = 0, caseStudyT }: CaseStudyCardProps) {
   const accent = ACCENTS[index % ACCENTS.length];
-  const isActive = caseStudy.status === 'Active';
+  const isActive = caseStudy.status !== 'In Development';
   const problemLabel = caseStudyT?.problemLabel ?? 'Problem';
   const outcomeLabel = caseStudyT?.outcomeLabel ?? 'Outcome';
   const readLabel = caseStudyT?.readCaseStudy ?? 'Read case study';

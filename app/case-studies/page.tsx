@@ -26,7 +26,7 @@ export default function CaseStudiesPage() {
           {caseStudies.map((cs, i) => {
             const colors = ['#4f75ff', '#7b5cf6', '#10b981'];
             const color = colors[i % colors.length];
-            const isActive = cs.status === 'Active';
+            const isActive = cs.status !== 'In Development';
             return (
               <Link
                 key={cs.id}
